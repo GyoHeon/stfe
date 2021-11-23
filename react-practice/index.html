@@ -39,17 +39,20 @@
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script type="text/javascript">
-    //console.log(React);
-    //console.log(ReactDOM);
-    const root = document.querySelector("#root");
-    const btn_plus = document.querySelector("#btn_plus");
+    const Component = props => {
+      return React.createElement('p', null, `${props.message} : ${props.count}`);
+    }
 
-    let i = 0;
+    ReactDOM.render(
+      React.createElement(Component, { message: 'init', count: 0 }, null),
+      document.querySelector('#root')
+    );
 
-    root.innerHTML = '<p>init: 0</p>';
-
-    btn_plus.addEventListener('click', () => {
-      root.innerHTML = `<p>init: ${++i}</p>`
+    document.querySelector('#btn_plus').addEventListener('click', () => {
+      ReactDOM.render(
+        React.createElement(Component, { message: 'update', count: 10 }, null),
+        document.querySelector('#root')
+      );
     })
   </script>
 </body>
