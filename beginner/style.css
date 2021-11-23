@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  border: 2px solid black;
+  height: 600px;
+  display: grid;
+}
+.wrapper > div {
+  background-color: yellow;
+}
+.wrapper > div:nth-child(1) {
+  background-color: tomato;
+  grid-column: 1/3;
+  grid-row: 1/4;
+}
+.wrapper > div:nth-child(2) {
+  background-color: yellowgreen;
+  grid-column: 2/4;
+  grid-row: 1/3;
+}
+.wrapper > div:nth-child(3) {
+  background-color: blue;
+  grid-column: 3/4;
+  grid-row: 3/4;
+}
