@@ -1,11 +1,6 @@
-import { useState, useEffect } from 'react';
-
 const inputArea = document.querySelector(".input");
 const outputArea = document.querySelector(".output");
 const button = document.querySelector(".translateButton");
-
-const [output, setOutput] = useState('');
-
 
 function makeHangulUgly(event) {
   event.preventDefault();
@@ -13,19 +8,15 @@ function makeHangulUgly(event) {
   printOutput(textInput);
 }
 function printOutput(text) {
-  outputArea.innerText = text;
+  let textArr = text.split("");
+  textArr = textArr.map(function (x) {
+    if (x === " " || x === "," || x === ".") return x;
+    else {
+      return String.fromCharCode(parseInt(x.charCodeAt(x) + 1));
+    }
+  });
+  textArr = textArr.join("");
+  outputArea.innerText = textArr;
 }
-const convertText = (e) => {
-        setOutput(
-            uglifyText(
-                input,
-                10,
-                10,
-                10,
-                10,
-                1
-            )
-        );
-    };
-    const copyTo
+
 button.addEventListener("click", makeHangulUgly);
