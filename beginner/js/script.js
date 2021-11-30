@@ -1,3 +1,37 @@
+let sorts = {
+  recent: (a, b) => b.idx - a.idx,
+  like: (a, b) => b.likes - a.likes,
+};
+let sort = sorts.recent;
+
+let filters = {
+  all: (it) => true,
+  mine: (it) => it.user_id === my_info.id,
+  like: (it) => my_info.like.indexOf(it.idx) > -1,
+  follow: (it) => my_info.follow.indexOf(it.user_id) > -1,
+};
+let filter = filters.all;
+
+function setSort(_sort) {
+  document
+    .querySelectorAll("#sorts li")
+    .forEach((sortLi) => sortLi.classList.remove("on"));
+  document.querySelector("#sorts li." + _sort).classList.add("on");
+
+  sort = sorts[_sort];
+  showPhotos();
+}
+
+function setFilter(_filter) {
+  document
+    .querySelectorAll("#filters li")
+    .forEach((filterLi) => filterLi.classList.remove("on"));
+  document.querySelector("#filters li." + _filter).classList.add("on");
+
+  filter = filters[_filter];
+  showPhotos();
+}
+
 function setMenu(_menu) {
   let menus = document.querySelectorAll("nav li");
   menus.forEach((menu) => menu.classList.remove("on"));
@@ -60,7 +94,11 @@ function showPhotos() {
   });
 
   var gallery = document.querySelector("#gallery");
-  photos.forEach(function (photo) {
+
+  var filtered = photos.filter(filter);
+  filtered.sort(sort);
+
+  filtered.forEach(function (photo) {
     var photoNode = document.querySelector("article.hidden").cloneNode(true);
     photoNode.classList.remove("hidden");
 
