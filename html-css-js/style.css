@@ -1,0 +1,18 @@
+ul {
+  font-size: 0;
+}
+ul > li {
+  display: inline-block;
+  font-size: 0;
+}
+ul > li + li {
+  margin-left: 2px;
+}
+ul > li > a {
+  display: block;
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: orange;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
