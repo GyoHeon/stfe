@@ -1,5 +1,6 @@
 const searchEl = document.querySelector(".search");
 const searchInputEl = searchEl.querySelector("input");
+const badgeEl = document.querySelector("header .badges");
 
 searchEl.addEventListener("click", function () {
   searchInputEl.focus();
@@ -16,8 +17,6 @@ searchInputEl.addEventListener("blur", function () {
   searchInputEl.value = "";
 });
 
-const badgeEl = document.querySelector("header .badges");
-
 window.addEventListener(
   "scroll",
   _.throttle(function () {
@@ -33,4 +32,12 @@ window.addEventListener(
       });
     }
   }, 300)
+);
+
+const fadeEls = document.querySelectorAll(".visual .fade-in");
+fadeEls.forEach((fadeEl, index) =>
+  gsap.to(fadeEl, 1, {
+    delay: (index + 1) * 0.7,
+    opacity: 1,
+  })
 );
