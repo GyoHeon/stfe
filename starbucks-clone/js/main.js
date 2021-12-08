@@ -1,6 +1,7 @@
 const searchEl = document.querySelector(".search");
 const searchInputEl = searchEl.querySelector("input");
 const badgeEl = document.querySelector("header .badges");
+const toTopEl = document.querySelector("#to-top");
 
 searchEl.addEventListener("click", function () {
   searchInputEl.focus();
@@ -25,14 +26,26 @@ window.addEventListener(
         opacity: 0,
         display: "none",
       });
+      gsap.to(toTopEl, 0.2, {
+        x: 0,
+      });
     } else {
       gsap.to(badgeEl, 0.6, {
         opacity: 1,
         display: "block",
       });
+      gsap.to(toTopEl, 0.2, {
+        x: 100,
+      });
     }
   }, 300)
 );
+
+toTopEl.addEventListener("click", function () {
+  gsap.to(window, 0.7, {
+    scrollTo: 0,
+  });
+});
 
 const fadeEls = document.querySelectorAll(".visual .fade-in");
 fadeEls.forEach((fadeEl, index) =>
