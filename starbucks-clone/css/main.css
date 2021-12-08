@@ -331,8 +331,16 @@ header .badges .badge {
 }
 .notice .notice-line .inner__left .swiper-container {
   height: 62px;
-  background-color: tomato;
   flex-grow: 1;
+  overflow: hidden;
+}
+.notice .notice-line .inner__left .swiper-slide {
+  height: 62px;
+  display: flex;
+  align-items: center;
+}
+.notice .notice-line .inner__left .swiper-slide a {
+  color: #fff;
 }
 .notice .notice-line .inner__left .notice-line__more {
   width: 62px;
@@ -366,4 +374,21 @@ header .badges .badge {
 }
 .notice .notice-line .inner__right .toggle-promotion .material-icons {
   font-size: 30px;
+}
+.notice .promotion {
+  height: 693px;
+  background-color: #f6f5ef;
+  position: relative;
+}
+.notice .promotion .swiper-container {
+  width: 2477px;
+  height: 553px;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: -1238.5px;
+
+  background-color: tomato;
+  text-align: center;
+  font-size: 200px;
 }
