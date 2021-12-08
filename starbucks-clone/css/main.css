@@ -387,8 +387,20 @@ header .badges .badge {
   top: 40px;
   left: 50%;
   margin-left: -1238.5px;
-
-  background-color: tomato;
-  text-align: center;
-  font-size: 200px;
+  overflow: hidden;
+}
+.notice .promotion .swiper-slide {
+  opacity: 0.5;
+  transition: opacity 1s;
+  position: relative;
+}
+.notice .promotion .swiper-slide-active {
+  opacity: 1;
+}
+.notice .promotion .swiper-slide .btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
