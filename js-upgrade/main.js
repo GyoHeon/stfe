@@ -1,9 +1,7 @@
-import getType from "./getType.js";
+import random from "./getRandom";
 
-console.log(getType("hello world"));
-console.log(getType(123));
-console.log(getType(true));
-console.log(getType(undefined));
-console.log(getType(null));
-console.log(getType({}));
-console.log(getType([]));
+const a = random();
+
+if (a === 0) console.log("a is 0");
+else if (a === 1) console.log("a is 1");
+else console.log("rest...");
