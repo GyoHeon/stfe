@@ -1,20 +1,10 @@
-// function User() {
-//   this.firstName = first;
-//   this.lastName = last;
-// }
-// User.prototype.getFullName = function () {
-//   return `${this.firstName} ${this.lastName}`;
-// };
+import _ from "lodash";
+import { getType } from "./getType.js";
 
-class User {
-  constructor(first, last) {
-    this.firstName = first;
-    this.lastName = last;
-  }
-  getFullName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
-}
+const user = { name: "lgh", age: 22, email: "ghl12078@gmail.com" };
+const copyUser = _.cloneDeep(user);
 
-const lgh = new User("Gyoheon", "Lee");
-console.log(lgh);
+console.log(user);
+console.log(getType([1, 2, 3]));
+console.log(getType({ a: 1, b: 2 }));
+console.log(getType("b"));
