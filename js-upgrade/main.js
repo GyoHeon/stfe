@@ -1,12 +1,15 @@
-import _ from "lodash";
-import myData from "./myData.json";
+import axios from "axios";
 
-const userA = { userId: "1", name: "lgh" };
+const url = "https://www.omdbapi.com/?apikey=7035c60c&s=frozen";
 
-const str = JSON.stringify(userA);
-console.log(str);
+function fetchMovies() {
+  axios.get(url).then((res) => {
+    console.log(res);
+    const h1El = document.querySelector("h1");
+    const imgEl = document.querySelector("img");
+    h1El.textContent = res.data.Search[0].Title;
+    imgEl.src = res.data.Search[0].Poster;
+  });
+}
 
-const obj = JSON.parse(str);
-console.log(obj);
-
-console.log(myData);
+fetchMovies();
