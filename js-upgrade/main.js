@@ -1,16 +1,12 @@
 import _ from "lodash";
+import myData from "./myData.json";
 
-const userA = [
-  { userId: "1", name: "lgh" },
-  { userId: "2", name: "Neo" },
-];
-const userB = [
-  { userId: "1", name: "lgh" },
-  { userId: "3", name: "Prodo" },
-];
+const userA = { userId: "1", name: "lgh" };
 
-const userC = userA.concat(userB);
-console.log(userC, _.uniqBy(userC, "userId"));
+const str = JSON.stringify(userA);
+console.log(str);
 
-const userD = _.unionBy(userA, userB, "userId");
-console.log(userD);
+const obj = JSON.parse(str);
+console.log(obj);
+
+console.log(myData);
