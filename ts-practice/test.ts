@@ -1,4 +1,7 @@
 let a: string;
 
 a = "Mark";
-a = "LGH";
+
+function hello(b: number) {
+  return null;
+}

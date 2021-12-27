@@ -1,3 +1,6 @@
 "use strict";
-let a = "Mark";
-a = "LGH";
+let a;
+a = "Mark";
+function hello(b) {
+    return null;
+}
