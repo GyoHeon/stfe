@@ -1,6 +1,10 @@
 "use strict";
-let a;
-a = "Mark";
-function hello(b) {
-    return null;
-}
+let isDone = false;
+console.log(isDone);
+let decimal = 55555;
+let hex = 0xf00d;
+let binary = 0b1001;
+let octal = 0o744;
+let NotANumber = NaN;
+let underscoreNum = 1000000;
+console.log(decimal, hex, binary, octal, NotANumber, underscoreNum);

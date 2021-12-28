@@ -1,7 +1,10 @@
-let a: string;
+let isDone: boolean = false;
+console.log(isDone);
 
-a = "Mark";
-
-function hello(b: number) {
-  return null;
-}
+let decimal: number = 55555;
+let hex: number = 0xf00d;
+let binary: number = 0b1001;
+let octal: number = 0o744;
+let NotANumber: number = NaN;
+let underscoreNum: number = 1_000_000;
+console.log(decimal, hex, binary, octal, NotANumber, underscoreNum);
