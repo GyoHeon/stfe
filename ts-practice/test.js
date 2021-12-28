@@ -44,3 +44,13 @@ function returnAny(message) {
     console.log(message);
 }
 const any1 = returnAny("리턴은 아무거나");
+if (maybe === true) {
+    const aBoolean = maybe;
+}
+// never
+function error(message) {
+    throw new Error(message);
+}
+function fail() {
+    return error("failed");
+}

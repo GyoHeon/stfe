@@ -53,3 +53,16 @@ function returnAny(message: any): any {
 }
 
 const any1 = returnAny("리턴은 아무거나");
+
+// unknown
+
+// never
+function error(message: string): never {
+  throw new Error(message);
+}
+
+function fail(): never {
+  return error("failed");
+}
+
+// void
