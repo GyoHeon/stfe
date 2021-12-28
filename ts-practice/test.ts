@@ -32,3 +32,7 @@ const person1: object = { name: "LGH", age: 26.9 };
 const person2: object = Object.create({ name: "LGH", age: 26.9 });
 console.log(typeof person1);
 console.log(typeof person2);
+
+// array
+let list1: number[] = [1, 2, 3];
+let list2: Array<number> = [1, 2, 3];
