@@ -8,3 +8,7 @@ let octal: number = 0o744;
 let NotANumber: number = NaN;
 let underscoreNum: number = 1_000_000;
 console.log(decimal, hex, binary, octal, NotANumber, underscoreNum);
+
+let myName: string = "LGH";
+let myBudget: string = `${underscoreNum}원 남음!`;
+console.log(myName, myBudget);
