@@ -32,7 +32,15 @@ console.log(typeof person2);
 let list1 = [1, 2, 3];
 let list2 = [1, 2, 3];
 // tuple
-let tuple1 = [26.9, "LGH"];
-console.log(tuple1);
-tuple1 = [27, "next year"];
-console.log(tuple1);
+let tuple = [26.9, "LGH"];
+console.log(tuple);
+tuple = [27, "next year"];
+console.log(tuple);
+const person = ["Prodo", 20];
+const [first, second] = person;
+// any
+// any를 남발하면 탕비스크립트를 쓰는 이유가 없으므로 최대한 지양해야함.
+function returnAny(message) {
+    console.log(message);
+}
+const any1 = returnAny("리턴은 아무거나");
