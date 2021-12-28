@@ -26,3 +26,9 @@ let union: number | null = 37;
 console.log(union);
 union = null;
 console.log(union);
+
+// object
+const person1: object = { name: "LGH", age: 26.9 };
+const person2: object = Object.create({ name: "LGH", age: 26.9 });
+console.log(typeof person1);
+console.log(typeof person2);
