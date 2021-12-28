@@ -44,9 +44,7 @@ function returnAny(message) {
     console.log(message);
 }
 const any1 = returnAny("리턴은 아무거나");
-if (maybe === true) {
-    const aBoolean = maybe;
-}
+// unknown
 // never
 function error(message) {
     throw new Error(message);
@@ -54,3 +52,9 @@ function error(message) {
 function fail() {
     return error("failed");
 }
+// void
+function returnVoid(message) {
+    console.log(message);
+    return;
+}
+returnVoid("No return");
