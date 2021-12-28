@@ -28,3 +28,11 @@ const person1 = { name: "LGH", age: 26.9 };
 const person2 = Object.create({ name: "LGH", age: 26.9 });
 console.log(typeof person1);
 console.log(typeof person2);
+// array
+let list1 = [1, 2, 3];
+let list2 = [1, 2, 3];
+// tuple
+let tuple1 = [26.9, "LGH"];
+console.log(tuple1);
+tuple1 = [27, "next year"];
+console.log(tuple1);

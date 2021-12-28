@@ -36,3 +36,12 @@ console.log(typeof person2);
 // array
 let list1: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3];
+
+// tuple
+let tuple: [number, string] = [26.9, "LGH"];
+console.log(tuple);
+tuple = [27, "next year"];
+console.log(tuple);
+
+const person: [string, number] = ["Prodo", 20];
+const [first, second] = person;
