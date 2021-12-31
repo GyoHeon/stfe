@@ -22,25 +22,35 @@
     <script type="text/babel">
       class Component extends React.Component {
         state = {
-          count: 0,
+          age: 39,
         };
         render() {
           return (
             <div>
-              <p>{this.state.count}</p>
-              <button
-                onMouseEnter={() => {
-                  console.log("cilcked");
-                  this.setState((state) => ({
-                    ...state,
-                    count: state.count + 1,
-                  }));
-                }}
-              >
-                클릭
-              </button>
+              <p>{this.state.age}</p>
             </div>
           );
+        }
+        componentWillMount() {
+          console.log("componentWillMount");
+        }
+        componentDidMount() {
+          console.log("componentDidMount");
+
+          setInterval(() => {
+            console.log("setInterval");
+            this.setState((state) => ({ ...state, age: state.age + 1 }));
+          }, 1000);
+        }
+        shouldComponentUpdate(nextProps, nextState) {
+          console.log("shouldComponentUpdate", nextProps, nextState);
+          return false;
+        }
+        componentWillUpdate(nextProps, nextState) {
+          console.log("componentWillUpdate", nextProps, nextState);
+        }
+        componentDidupdate(prevProps, prevState) {
+          console.log("componentDidupdate", prevProps, prevState);
         }
       }
 
