@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    React-practice
-  </title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      #root p {
+        color: white;
+        font-size: 20px;
+        background-color: green;
+        text-align: center;
+        width: 200px;
+      }
+      #btn_plus {
+        background-color: tomato;
+        border: 2px;
+        font-size: 15px;
+        width: 200px;
+      }
+    </style>
 
-    #root p {
-      color: white;
-      font-size: 20px;
-      background-color: tomato;
-      text-align: center;
-      width: 200px;
-    }
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <button id="btn_plus">+</button>
 
-    #btn_plus {
-      background-color: violet;
-      border: 2px solid black;
-      font-size: 15px;
-      width: 200px;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="root"></div>
-
-
-  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    let i = 0;
-    class App extends React.Component {
-      state = {
-        hasError: false
+    <script type="text/javascript">
+      const Component = (props) => {
+        return React.createElement(
+          "p",
+          null,
+          `${props.message} : ${props.count}`
+        );
       };
-      render() {
-        if (this.state.hasError) {
-          return <div>ㄴㅇㄱ</div>;
-        }
-        return <WebService />;
-      }
-      componentDidCatch(error, info) {
-        this.setState({ hasError: true });
-      }
-    }
 
-    ReactDOM.render(<App name="Mark" />, document.querySelector('#root'))
-  </script>
-</body>
+      ReactDOM.render(
+        React.createElement(Component, { message: "init", count: 0 }, null),
+        document.querySelector("#root")
+      );
 
+      document.querySelector("#btn_plus").addEventListener("click", () => {
+        ReactDOM.render(
+          React.createElement(
+            Component,
+            { message: "update", count: 10 },
+            null
+          ),
+          document.querySelector("#root")
+        );
+      });
+    </script>
+  </body>
 </html>
