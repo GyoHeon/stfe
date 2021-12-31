@@ -27,24 +27,21 @@
         render() {
           return (
             <div>
-              <h1>{this.props.message} 이것은 class로 만든 컴포넌트 입니다.</h1>
               <p>{this.state.count}</p>
+              <button
+                onMouseEnter={() => {
+                  console.log("cilcked");
+                  this.setState((state) => ({
+                    ...state,
+                    count: state.count + 1,
+                  }));
+                }}
+              >
+                클릭
+              </button>
             </div>
           );
         }
-
-        componentDidMount() {
-          setTimeout(() => {
-            this.setState((previousState) => {
-              const newState = { count: previousState.count + 1 };
-              return newState;
-            });
-          }, 1000);
-        }
-
-        static defaultProps = {
-          message: "default",
-        };
       }
 
       ReactDOM.render(<Component />, document.querySelector("#root"));
