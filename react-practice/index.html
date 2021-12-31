@@ -20,21 +20,34 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      {
-        a: "a";
+      class Component extends React.Component {
+        state = {
+          count: 0,
+        };
+        render() {
+          return (
+            <div>
+              <h1>{this.props.message} 이것은 class로 만든 컴포넌트 입니다.</h1>
+              <p>{this.state.count}</p>
+            </div>
+          );
+        }
+
+        componentDidMount() {
+          setTimeout(() => {
+            this.setState((previousState) => {
+              const newState = { count: previousState.count + 1 };
+              return newState;
+            });
+          }, 1000);
+        }
+
+        static defaultProps = {
+          message: "default",
+        };
       }
-      ReactDOM.render(
-        <div a="a">
-          <div>
-            <h1>주제</h1>
-            <ul>
-              <li>React</li>
-              <li>Vue</li>
-            </ul>
-          </div>
-        </div>,
-        document.querySelector("#root")
-      );
+
+      ReactDOM.render(<Component />, document.querySelector("#root"));
     </script>
   </body>
 </html>
