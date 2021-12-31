@@ -6,27 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        border: 0;
-      }
-      #root p {
-        color: white;
-        font-size: 20px;
-        background-color: green;
-        text-align: center;
-        width: 200px;
-      }
-      #btn_plus {
-        background-color: tomato;
-        border: 2px;
-        font-size: 15px;
-        width: 200px;
-      }
-    </style>
-
     <script
       crossorigin
       src="https://unpkg.com/react@17/umd/react.development.js"
@@ -38,32 +17,58 @@
   </head>
   <body>
     <div id="root"></div>
-    <button id="btn_plus">+</button>
 
     <script type="text/javascript">
-      const Component = (props) => {
-        return React.createElement(
-          "p",
-          null,
-          `${props.message} : ${props.count}`
-        );
-      };
+      // React.createElement(type, [props], [...children]);
 
+      // ReactDOM.render(
+      //   React.createElement("h1", null, `type 이 "태그 이름 문자열"입니다.`),
+      //   document.querySelector("#root")
+      // );
+
+      // React component
+      // const Component = () => {
+      //   return React.createElement(
+      //     "h1",
+      //     null,
+      //     `type 이 "React 컴포넌트"입니다.`
+      //   );
+      // };
+
+      // ReactDOM.render(
+      //   React.createElement(Component, null, null),
+      //   document.querySelector("#root")
+      // );
+
+      // React.Fragment
+      // ReactDOM.render(
+      //   React.createElement(
+      //     React.Fragment,
+      //     null,
+      //     `type 이 "React Fragment"입니다.`
+      //   ),
+      //   document.querySelector("#root")
+      // );
+
+      // 복잡한 React Element
       ReactDOM.render(
-        React.createElement(Component, { message: "init", count: 0 }, null),
+        React.createElement(
+          "div",
+          null,
+          React.createElement(
+            "div",
+            null,
+            React.createElement("h1", null, "주제"),
+            React.createElement(
+              "ul",
+              null,
+              React.createElement("li", null, "React"),
+              React.createElement("li", null, "Vue")
+            )
+          )
+        ),
         document.querySelector("#root")
       );
-
-      document.querySelector("#btn_plus").addEventListener("click", () => {
-        ReactDOM.render(
-          React.createElement(
-            Component,
-            { message: "update", count: 10 },
-            null
-          ),
-          document.querySelector("#root")
-        );
-      });
     </script>
   </body>
 </html>
