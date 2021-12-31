@@ -14,59 +14,25 @@
       crossorigin
       src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
     ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
 
-    <script type="text/javascript">
-      // React.createElement(type, [props], [...children]);
-
-      // ReactDOM.render(
-      //   React.createElement("h1", null, `type 이 "태그 이름 문자열"입니다.`),
-      //   document.querySelector("#root")
-      // );
-
-      // React component
-      // const Component = () => {
-      //   return React.createElement(
-      //     "h1",
-      //     null,
-      //     `type 이 "React 컴포넌트"입니다.`
-      //   );
-      // };
-
-      // ReactDOM.render(
-      //   React.createElement(Component, null, null),
-      //   document.querySelector("#root")
-      // );
-
-      // React.Fragment
-      // ReactDOM.render(
-      //   React.createElement(
-      //     React.Fragment,
-      //     null,
-      //     `type 이 "React Fragment"입니다.`
-      //   ),
-      //   document.querySelector("#root")
-      // );
-
-      // 복잡한 React Element
+    <script type="text/babel">
+      {
+        a: "a";
+      }
       ReactDOM.render(
-        React.createElement(
-          "div",
-          null,
-          React.createElement(
-            "div",
-            null,
-            React.createElement("h1", null, "주제"),
-            React.createElement(
-              "ul",
-              null,
-              React.createElement("li", null, "React"),
-              React.createElement("li", null, "Vue")
-            )
-          )
-        ),
+        <div a="a">
+          <div>
+            <h1>주제</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+            </ul>
+          </div>
+        </div>,
         document.querySelector("#root")
       );
     </script>
