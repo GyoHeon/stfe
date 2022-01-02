@@ -5,6 +5,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Links from "./components/Links";
 import NavLinks from "./components/NavLinks";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Links />
       <NavLinks />
       <Switch>
+        <Route path="/Login" component={Login} />
         <Route path="/Profile/:id" component={Profile} />
         <Route path="/Profile" component={Profile} />
         <Route path="/About" component={About} />
