@@ -6,11 +6,10 @@ import About from "./pages/About";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/Profile" element={<Profile />} />
-        <Route exact path="/About" element={<About />} />
-      </Routes>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/Profile" component={Profile} />
+      <Route exact path="/Profile/:id" component={Profile} />
+      <Route exact path="/About" component={About} />
     </BrowserRouter>
   );
 }
