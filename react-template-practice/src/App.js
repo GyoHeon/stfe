@@ -3,10 +3,12 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Links from "./components/Links";
 
 function App() {
   return (
     <BrowserRouter>
+      <Links />
       <Switch>
         <Route path="/Profile/:id" component={Profile} />
         <Route path="/Profile" component={Profile} />
