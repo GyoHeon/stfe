@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
@@ -7,13 +7,18 @@ import Links from "./components/Links";
 import NavLinks from "./components/NavLinks";
 import Login from "./pages/Login";
 
+const isLogin = true;
+
 function App() {
   return (
     <BrowserRouter>
       <Links />
       <NavLinks />
       <Switch>
-        <Route path="/Login" component={Login} />
+        <Route
+          path="/Login"
+          render={() => (isLogin ? <Redirect to="/" /> : <Login />)}
+        />
         <Route path="/Profile/:id" component={Profile} />
         <Route path="/Profile" component={Profile} />
         <Route path="/About" component={About} />
