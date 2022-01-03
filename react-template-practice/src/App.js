@@ -7,6 +7,9 @@ import Links from "./components/Links";
 import NavLinks from "./components/NavLinks";
 import Login from "./pages/Login";
 
+import styles from "./App.module.css";
+console.log(styles);
+
 const isLogin = true;
 
 function App() {

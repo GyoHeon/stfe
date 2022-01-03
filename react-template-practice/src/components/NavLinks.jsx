@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
+import styles from "../App.module.css";
 
 const activeStyle = { color: "green" };
 
 export default function NavLinks() {
   return (
     <ul>
-      <li>
+      <li className={styles.nav}>
         <NavLink to="/" exact activeStyle={activeStyle}>
           Home
         </NavLink>
