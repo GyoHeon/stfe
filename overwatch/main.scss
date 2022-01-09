@@ -1,0 +1,68 @@
+// VARIABLES
+$url: "https://raw.githubusercontent.com/ParkYoungWoong/overwatch-hero-selector-vanilla/master/images";
+
+// BODY
+body {
+  height: 100vh;
+  background-image: url("#{$url}/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+// CONTAINER
+.container {
+  padding: 50px 0;
+
+  .heroes {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .hero {
+      width: 80px;
+      height: 84px;
+      background-color: #555;
+      margin: 4px;
+      border: 3px solid #fff;
+      border-radius: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+      transform: skewX(-14deg);
+      transition: transform 0.1s, background-color 0.6s;
+      &:hover {
+        background-color: #ff9c00;
+        transform: scale(1.3) skewX(-14deg);
+        z-index: 1;
+      }
+
+      .image {
+        height: 100%;
+        width: 140%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 90px;
+        transform: skewX(14deg) translateX(-16px);
+      }
+
+      @for $i from 1 through 32 {
+        &:nth-child(#{$i}) .image {
+          background-image: url("#{$url}/hero#{$i}.png");
+        }
+      }
+    }
+  }
+  // LOGO
+  .logo {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
