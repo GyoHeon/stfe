@@ -4,7 +4,7 @@ import { ADD_TODO } from "./actions";
 
 const initialState = [];
 
-function todoApp(previousState = initialState, action) {
+export function todoApp(previousState = initialState, action) {
   if (action.type === ADD_TODO) {
     return [...previousState, action.todo];
   }
