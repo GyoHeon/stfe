@@ -47,7 +47,7 @@ const person: [string, number] = ["Prodo", 20];
 const [first, second] = person;
 
 // any
-// any를 남발하면 탕비스크립트를 쓰는 이유가 없으므로 최대한 지양해야함.
+// any를 남발하면 타입스크립트를 쓰는 이유가 없으므로 최대한 지양해야함.
 function returnAny(message: any): any {
   console.log(message);
 }
