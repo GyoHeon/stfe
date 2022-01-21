@@ -9,15 +9,18 @@ const Box = styled.div`
   height: 100px;
 `;
 
-const Circle = styled(Box)`
-  border-radius: 50%;
+const Input = styled.input.attrs({ minLength: 10, required: true })`
+  background-color: tomato;
 `;
 
 function App() {
   return (
     <Father>
-      <Box bgColor="teal" />
-      <Circle bgColor="cornflowerblue" />
+      <Input />
+      <Input />
+      <Input />
+      <Input />
+      <Input />
     </Father>
   );
 }
