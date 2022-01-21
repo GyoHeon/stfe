@@ -1,6 +1,9 @@
 import styled, { keyframes } from "styled-components";
 
 const Wrapper = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
+  width: 300px;
+  height: 300px;
   display: flex;
 `;
 
