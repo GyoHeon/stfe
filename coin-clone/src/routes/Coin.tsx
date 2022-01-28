@@ -8,8 +8,10 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import Chart from "./Chart";
 import Price from "./Price";
+import { fetchCoinInfo, fetchCoinTickers } from "./api";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -140,34 +142,45 @@ interface PriceData {
 }
 
 function Coin() {
-  const [loading, setLoading] = useState(true);
-  const [info, setInfo] = useState<InfoData>();
-  const [price, setPrice] = useState<PriceData>();
   const { coinId } = useParams<Params>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
   const chartMatch = useRouteMatch("/:coinId/chart");
+  // const [loading, setLoading] = useState(true);
+  // const [info, setInfo] = useState<InfoData>();
+  // const [price, setPrice] = useState<PriceData>();
 
-  useEffect(() => {
-    (async () => {
-      const infoData = await (
-        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-      ).json();
-      const priceData = await (
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-      ).json();
+  // useEffect(() => {
+  //   (async () => {
+  //     const infoData = await (
+  //       await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+  //     ).json();
+  //     const priceData = await (
+  //       await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+  //     ).json();
 
-      setInfo(infoData);
-      setPrice(priceData);
-      setLoading(false);
-    })();
-  }, [coinId]);
+  //     setInfo(infoData);
+  //     setPrice(priceData);
+  //     setLoading(false);
+  //   })();
+  // }, [coinId]);
+
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(coinId)
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(coinId)
+  );
+
+  const loading = infoLoading || tickersLoading;
 
   return (
     <Container>
       <Header>
         <Title>
-          {state?.name ? state?.name : loading ? "Loading..." : info?.name}
+          {state?.name ? state?.name : loading ? "Loading..." : infoData?.name}
         </Title>
       </Header>
       {loading ? (
@@ -177,26 +190,26 @@ function Coin() {
           <Overview>
             <OverviewItem>
               <span>Rank:</span>
-              <span>{info?.rank}</span>
+              <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Symbol:</span>
-              <span>{info?.symbol}</span>
+              <span>{infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Open Source:</span>
-              <span>{info?.open_source ? "YES" : "NO"}</span>
+              <span>{infoData?.open_source ? "YES" : "NO"}</span>
             </OverviewItem>
           </Overview>
-          <Description>{info?.description}</Description>
+          <Description>{infoData?.description}</Description>
           <Overview>
             <OverviewItem>
               <span>Total Supplay</span>
-              <span>{price?.total_supply}</span>
+              <span>{tickersData?.total_supply}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Max Supplay</span>
-              <span>{price?.max_supply}</span>
+              <span>{tickersData?.max_supply}</span>
             </OverviewItem>
           </Overview>
           <Tabs>
