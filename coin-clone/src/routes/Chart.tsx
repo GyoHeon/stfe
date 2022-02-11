@@ -42,8 +42,10 @@ function Chart({ coinId }: ChartProps) {
                 show: false,
               },
             },
-            yaxis: {
-              show: false,
+            yaxis: { decimalsInFloat: 2 },
+            xaxis: {
+              type: "datetime",
+              categories: data?.map((price) => price.time_close),
             },
             theme: {
               mode: "dark",
