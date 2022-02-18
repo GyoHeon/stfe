@@ -3,17 +3,14 @@ import reactDOM from "react-dom";
 import { Provider } from "react-redux";
 import Example from "./components/example";
 import GlobalStyle from "./GlobalStyle";
-import configureStore from "./store/store";
-
-const store = configureStore();
+import store from "./store/store";
 
 const App = () => {
-  const exampleMessage = "Hello World";
   return (
     <React.StrictMode>
       <Provider store={store}>
         <GlobalStyle />
-        <Example exampleMessage={exampleMessage} />
+        <Example />
       </Provider>
     </React.StrictMode>
   );

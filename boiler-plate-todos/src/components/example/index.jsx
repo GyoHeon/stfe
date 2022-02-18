@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { ExampleWrapper } from "./style";
+import { ExampleWrapper, Input, Ul, Li } from "./style";
 import { useDispatch, useSelector } from "react-redux";
-import { increaseCount } from "@reducers/counter/actionType";
-const Example = ({ exampleMessage }) => {
-  const count = useSelector((state) => state.counter.count);
+import { todoActions } from "@reducers/todos/todos";
+
+const Example = () => {
   const dispatch = useDispatch();
-  const onClickButton = () => {
-    dispatch(increaseCount(1));
+  const todos = useSelector((state) => state.todos);
+  const [text, setText] = useState("");
+
+  const onChange = (e) => setText(e.target.value);
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      dispatch(todoActions.ADD(text));
+      setText("");
+    }
   };
+
   return (
     <ExampleWrapper>
-      <div className="count_holder">{count}</div>
-      <div>
-        <button onClick={onClickButton}>누르면 카운트가 증가해요</button>
-      </div>
-      <div>{exampleMessage}</div>
+      <Input
+        placeholder="add To Do"
+        value={text}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
+      />
+      <Ul>
+        {todos.todos.map((todo) => (
+          <Li key={todo.id}>{todo.content}</Li>
+        ))}
+      </Ul>
     </ExampleWrapper>
   );
 };
