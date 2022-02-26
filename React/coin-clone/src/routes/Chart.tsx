@@ -2,8 +2,9 @@ import { useQuery } from "react-query";
 import { fetchCoinHistory } from "./api";
 import ApexChart from "react-apexcharts";
 
-interface ChartProps {
+interface IChartProps {
   coinId: string;
+  isDark: boolean;
 }
 interface IHistory {
   time_open: string;
@@ -16,7 +17,7 @@ interface IHistory {
   market_cap: number;
 }
 
-function Chart({ coinId }: ChartProps) {
+function Chart({ coinId, isDark }: IChartProps) {
   const { isLoading, data } = useQuery<IHistory[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId)
   );
@@ -48,7 +49,7 @@ function Chart({ coinId }: ChartProps) {
               categories: data?.map((price) => price.time_close),
             },
             theme: {
-              mode: "dark",
+              mode: isDark ? "dark" : "light",
             },
             stroke: {
               curve: "smooth",
