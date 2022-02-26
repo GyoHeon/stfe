@@ -18,7 +18,7 @@ interface ICoinsProps {
   toggleDark: () => void;
 }
 
-function Coins({ toggleDark }: ICoinsProps) {
+function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 
   return (
