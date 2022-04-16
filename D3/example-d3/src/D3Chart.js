@@ -6,6 +6,7 @@ const data = [20, 12, 16, 25, 20];
 
 export default class D3Chart {
   constructor(element) {
+    // canvas
     const canvas = d3
       .select(element)
       .append("svg")
