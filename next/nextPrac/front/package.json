@@ -1,0 +1,22 @@
+{
+  "name": "react-nodebird-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GyoHeonLee/nextPrac.git"
+  },
+  "author": "GyoHeonLee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GyoHeonLee/nextPrac/issues"
+  },
+  "homepage": "https://github.com/GyoHeonLee/nextPrac#readme",
+  "dependencies": {
+    "next": "^9.5.5"
+  }
+}
