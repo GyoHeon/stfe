@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Menu } from "antd";
+import { Menu, Input, Row, Col } from "antd";
 
 const AppLayout = ({ children }) => {
   return (
@@ -16,12 +16,20 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
+          <Input.Search style={{ verticalAlign: "middle" }} />
+        </Menu.Item>
+        <Menu.Item>
           <Link href="/signup">
             <a>회원가입</a>
           </Link>
         </Menu.Item>
-        {children}
       </Menu>
+      <Row>
+
+        
+
+      </Row>
+      {children}
     </div>
   );
 };
