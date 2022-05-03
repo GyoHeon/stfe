@@ -16,7 +16,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Input.Search style={{ verticalAlign: "middle" }} />
+          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signup">
@@ -24,12 +24,17 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
       </Menu>
-      <Row>
-
-        
-
+      <Row gutter={8}>
+        <Col xs={24} md={6}>
+          왼쪽 메뉴
+        </Col>
+        <Col xs={24} md={12}>
+          {children}
+        </Col>
+        <Col xs={24} md={6}>
+          MADE BY LGH
+        </Col>
       </Row>
-      {children}
     </div>
   );
 };
