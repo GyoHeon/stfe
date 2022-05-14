@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 
-const Rect = () => {
+const Dim = () => {
   const standardRef = useRef(null);
 
   const [opacity, setOpacity] = useState(0);
@@ -27,24 +27,38 @@ const Rect = () => {
   }, [standardRef]);
 
   return (
-    <RectWrapper ref={standardRef}>
+    <DimWrapper opacity={opacity}>
+      <div className="image" ref={standardRef} />
       <span>{opacity}</span>
-      <span>{opacity}</span>
-    </RectWrapper>
+    </DimWrapper>
   );
 };
 
-const RectWrapper = styled.div`
+const DimWrapper = styled.div`
   background: tomato;
-  width: 150px;
-  height: 200px;
-  margin: 30px;
+  position: relative;
+  width: 100%;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  span {
+  > .image {
+    width: 100%;
+    height: 300px;
+    background-image: url(https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip);
+    object-fit: cover;
+  }
+  .image:before {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300px;
+    background: #fff;
+    opacity: ${(props) => 1 - props.opacity};
   }
 `;
 
-export default Rect;
+export default Dim;
