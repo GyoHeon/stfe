@@ -17,11 +17,11 @@ const FollowList = ({ header, data }) => {
         boradered
         datasource={data}
         renderItem={(item) => (
-          <List.item style={{ marginTop: 20 }}>
+          <List.Item style={{ marginTop: 20 }}>
             <Card actions={[<StopOutlined key="stop" />]}>
               <Card.Meta description={item.nickname} />
             </Card>
-          </List.item>
+          </List.Item>
         )}
       />
     </ListWrapper>

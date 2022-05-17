@@ -1,18 +1,13 @@
 import { Button, Form, Input } from "antd";
 import { useState, useCallback } from "react";
+import useInput from "../hooks/useInput";
 import Link from "next/link";
 import styled from "styled-components";
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useInput("");
 
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  }, []);
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
     setIsLoggedIn(true);
