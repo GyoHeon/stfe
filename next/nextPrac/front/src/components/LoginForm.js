@@ -3,14 +3,16 @@ import { useState, useCallback } from "react";
 import useInput from "../hooks/useInput";
 import Link from "next/link";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    setIsLoggedIn(true);
+    dispatch(loginAction({ id, password }));
   }, [id, password]);
 
   return (
