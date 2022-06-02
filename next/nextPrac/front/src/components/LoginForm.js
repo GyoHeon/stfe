@@ -4,6 +4,7 @@ import useInput from "../hooks/useInput";
 import Link from "next/link";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { loginAction } from "../reducers";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
