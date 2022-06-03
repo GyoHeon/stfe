@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Menu, Input, Row, Col } from "antd";
-import { useState } from "react";
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const AppLayout = ({ children }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   return (
     <div>
