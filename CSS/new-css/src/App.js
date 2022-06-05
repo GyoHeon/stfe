@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="background--color"></div>
+      <div className="accent--color">
+        <input type="checkbox" />
+        <input type="checkbox" />
+        <input type="checkbox" />
+        <br />
+        <input type="radio" name="radio" value="check" />
+        <input type="radio" name="radio" value="check" />
+        <input type="radio" name="radio" value="check" />
+        <br />
+        <input type="range" />
+        <br />
+        <progress />
+      </div>
+      <div className="contrast--color">COLOR CONTRAST</div>
+
+      <div className="in">
+        <p>nohas</p>
+      </div>
+
+      <div className="in">
+        <span>:has()</span>
+      </div>
+    </>
   );
 }
 
