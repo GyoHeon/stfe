@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Rect from "./Rect";
 import Header from "./Header";
 import Dim from "./Dim";
+import DimHeader from "./DimHeader";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
 
       <Header />
       <Dim />
+      <DimHeader />
 
       <Rect />
     </Wrapper>
