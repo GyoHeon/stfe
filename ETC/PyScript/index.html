@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOM API in PyScript</title>
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <style>
+    .crossed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <py-title>PyScript Playground</py-title>
+
+  <div id="shopping-list">
+    <p>Shopping List</p>
+    <ul>
+      <li class="crossed">milk</li>
+      <li class="crossed">eggs</li>
+      <li>bread</li>
+    </ul>
+    <input id="new-item" type="text" placeholder="Add new item">
+    <button>Add</button>
+  </div>
+
+  <py-script>
+    from random import choice, randint
+
+    colors = ["azure", "beige", "khaki", "linen", "skyblue"]
+    for li in document.querySelectorAll("#shopping-list li"):
+    if not li.hasAttribute("data-price"):
+    li.dataset.price = randint(1, 15)
+    li.classList.toggle("crossed")
+    li.style.backgroundColor = choice(colors)
+  </py-script>
+</body>
+
+</html>
