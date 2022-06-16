@@ -27,7 +27,7 @@ const PostCard = ({ post }) => {
   return (
     <div style={{ marginTop: 20 }}>
       <Card
-        cover={post.Images[0] && <PostImages images={post.images} />}
+        cover={post.images[0] && <PostImages images={post.images} />}
         actions={[
           <RetweetOutlined key="retweet" />,
           liked ? (
@@ -69,14 +69,14 @@ const PostCard = ({ post }) => {
         <div>
           <CommentForm post={post} />
           <List
-            header={`${post.Comments.length}개의 댓글`}
+            header={`${post.comments.length}개의 댓글`}
             itemLayout="horizontal"
-            dataSource={post.Comments}
+            dataSource={post.comments}
             renderItem={(item) => (
               <li>
                 <Comment
-                  author={item.User.nickname}
-                  avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                  author={item.user.nickname}
+                  avatar={<Avatar>{item.user.nickname[0]}</Avatar>}
                   content={item.content}
                 />
               </li>

@@ -7,7 +7,7 @@ export const initialState = {
         nickname: "LGH",
       },
       content: 'I"m so sleepy',
-      Images: [
+      images: [
         {
           src: "https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5b/b3/22/85/5bb32285000ed2738de6.jpg",
         },
@@ -18,15 +18,15 @@ export const initialState = {
           src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrs_tAcJ1ffrBWnV54rLEwsc113iNvzGtThHIIRWSvcdmkJWgOsKq19_FUPI_mj8-Z2g&usqp=CAU",
         },
       ],
-      Comments: [
+      comments: [
         {
-          User: {
+          user: {
             nickname: "dongduu",
           },
           content: "아고 졸리다",
         },
         {
-          User: {
+          user: {
             nickname: "dongduu",
           },
           content: "공부는 어렵다",
@@ -41,12 +41,12 @@ export const initialState = {
 const dummyPost = {
   id: 2,
   content: "dummy",
-  User: {
+  user: {
     id: 1,
     nickname: "LGH",
   },
-  Images: [],
-  Comments: [],
+  images: [],
+  comments: [],
 };
 
 const ADD_POST = "ADD_POST";
