@@ -5,10 +5,10 @@ import ImagesZoom from "./ImagesZoom";
 const PostImages = ({ images }) => {
   const [showImageZoom, setShowImageZoom] = useState(false);
   const onZoom = useCallback(() => {
-    setShowImageZoom(true);
+    setShowImageZoom((prev) => true);
   }, []);
   const onClose = useCallback(() => {
-    setShowImageZoom(false);
+    setShowImageZoom((prev) => false);
   }, []);
 
   if (images.length === 1) {
@@ -69,8 +69,8 @@ const PostImages = ({ images }) => {
         <br />
         {images.length - 1}
         개의 사진 더보기
-        {showImageZoom && <ImagesZoom images={images} onClose={onClose} />}
       </div>
+      {showImageZoom && <ImagesZoom images={images} onClose={onClose} />}
     </div>
   );
 };
