@@ -11,7 +11,7 @@ const InnerVariable = ({ num }) => {
         border: "1px solid red",
         width: "200px",
         padding: "30px",
-        margin: "250px auto 50px",
+        margin: "50px auto",
       }}
     >
       InnerVariable : {number}
