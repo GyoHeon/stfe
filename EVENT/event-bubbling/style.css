@@ -1,0 +1,29 @@
+.parent {
+  background-color: cornflowerblue;
+  width: 200px;
+  height: 150px;
+  margin: 100px;
+  padding-top: 1px;
+  border-radius: 16px;
+}
+
+.child {
+  background-color: tomato;
+  width: 140px;
+  height: 80px;
+  border-radius: 16px;
+  margin: 40px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+span {
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 3px;
+}
+.parent > span {
+  position: absolute;
+  left: 180px;
+  top: 105px;
+}
