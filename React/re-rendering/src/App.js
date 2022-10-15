@@ -6,12 +6,11 @@ function App() {
     my: "lgh",
   });
 
-  const nameHandler = () => {
-    console.log(user);
+  console.log(user);
 
+  const nameHandler = () => {
     user.my = "Lee Gyo Heon";
     setUser(user);
-
     console.log(user);
   };
 
