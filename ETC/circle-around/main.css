@@ -26,8 +26,8 @@ section {
 .album {
   background-color: gray;
   border: 1px solid blue;
-  min-width: 300px;
-  height: 300px;
+  min-width: 500px;
+  height: 500px;
   position: absolute;
   font-size: 100px;
 }

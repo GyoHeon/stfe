@@ -41,6 +41,7 @@ draggable.addEventListener("mousedown", (e) => {
 draggable.addEventListener("mousemove", (e) => {
   if (isDrawing) {
     getPosition(e.offsetX, firstPosition, accPosition);
+    setAlbumDotsActive(center);
   }
 });
 draggable.addEventListener("mouseup", (e) => {
