@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
+
+
+<body>
+  <main>
+    <label className="upload" for="profileImage">이쁜 파일 첨부 버튼</label>
+    <input id="profileImage" type="file" accept="image/*" onchange="getUploadedFileImage()" />
+  </main>
+</body>
+
+<script>
+  const profileImage = document.getElementById('profileImage');
+  const upload = document.querySelector('main');
+  const getUploadedFileImage = () => {
+    const file = profileImage.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const result = reader.result;
+      upload.style.backgroundImage = `url(${result})`;
+    };
+  };
+</script>
+
+</html>

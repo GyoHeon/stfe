@@ -1,0 +1,26 @@
+main {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  margin: 500px auto;
+  border: 3px solid salmon;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+}
+label {
+  padding: 12px;
+  margin: auto;
+  border: 2px solid salmon;
+  border-radius: 12px;
+  background-color: greenyellow;
+  cursor: pointer;
+}
+.uploadedImage {
+  width: 100px;
+  height: 100px;
+}
