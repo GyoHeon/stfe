@@ -1,6 +1,7 @@
-# stfe
+# STFE
 
-StartUp track Frontend
+개인이 공부한 코드를 정리한 레포입니다.  
+정해진 주제는 없습니다.
 
 ## Directory
 
