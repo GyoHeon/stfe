@@ -1,10 +1,9 @@
 import React from "react";
 import { classNames } from "../../util/classNames";
-import "./style.css";
+import "./styles.css";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
-  backgroundColor?: string;
   size?: "small" | "medium" | "large";
   label: string;
 }
@@ -14,7 +13,6 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  */
 export const Button = ({
   primary,
-  backgroundColor,
   size = "medium",
   label,
   ...props
