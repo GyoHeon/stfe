@@ -8,7 +8,7 @@ import { createElement } from "react";
 
 export const MAIN_TITLE = "Wiki for FastCampus";
 
-const NAV_ITEMS = ["Wiki", "프로젝트", "온보딩"];
+const NAV_ITEMS = ["Wiki", "출퇴근", "갤러리"];
 export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map((menu) => ({
   key: menu,
   label: <a href={`/${menu}`}>{menu}</a>,
