@@ -1,48 +1,48 @@
 import {
-  FirebaseStorage,
+  ListResult,
   getDownloadURL,
   getStorage,
   listAll,
   ref,
 } from "firebase/storage";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { fireBaseApp } from "../utils/firebase";
 
 export function Gallery() {
-  const [document, setDocument] = useState<FirebaseStorage | undefined>();
+  const [id] = useSearchParams();
+  const [document, setDocument] = useState<ListResult | undefined>();
   const [urls, setUrls] = useState<string[][]>([]);
+
+  const item = id.get("item") as string;
 
   useEffect(() => {
     const querySnapshot = async () => {
       const storage = getStorage(fireBaseApp);
 
-      const refData = ref(storage, "");
+      const refData = ref(storage, `/${item}`);
 
       const data = await listAll(refData);
+
+      console.log(data.items);
 
       setDocument(data);
     };
     querySnapshot();
-  }, []);
+  }, [item]);
 
   useEffect(() => {
-    const AllPictures = async () => {
-      const AllItems = await document?.prefixes?.map(async (prefix) => {
-        const list = await listAll(prefix);
-
-        const pictures = list?.items?.map(async (item) => {
-          return getDownloadURL(item);
-        });
-
-        return await Promise.all(pictures);
+    const allPictures = async () => {
+      const allItems = document?.items?.map(async (ref) => {
+        return getDownloadURL(ref);
       });
 
-      const allUrls = await Promise.all(AllItems);
+      const allUrls = await Promise.all(allItems);
 
       setUrls(allUrls);
     };
 
-    AllPictures();
+    allPictures();
   }, [document]);
 
   return (
@@ -55,13 +55,11 @@ export function Gallery() {
           listStyle: "none",
         }}
       >
-        {urls.map((url) =>
-          url.map((item) => (
-            <li key={item} style={{ width: "100px", height: "100px" }}>
-              <img src={item} width={100} height={100} />
-            </li>
-          ))
-        )}
+        {urls.map((item) => (
+          <li key={item} style={{ width: "100px", height: "100px" }}>
+            <img src={item} width={100} height={100} />
+          </li>
+        ))}
       </ul>
     </main>
   );

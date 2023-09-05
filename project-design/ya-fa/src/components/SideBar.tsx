@@ -1,32 +1,24 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { useLocation } from "react-router-dom";
-import { SIDE_NAV } from "../constants/layout";
+import { SIDE_ITEMS, SIDE_NAV, TCategory } from "../constants/layout";
 
 export function SideBar() {
-  const path = useLocation().pathname.split("/")[1] as keyof typeof data;
+  const path = useLocation().pathname.split("/")[1] as TCategory;
+  const menus = SIDE_ITEMS[path];
 
-  const data = {
-    Wiki: {
-      defaultSelectedKeys: ["회사생활", "회사내규"],
-      defaultOpenKeys: ["회사생활"],
-      items: SIDE_NAV("Wiki"),
-    },
-    commute: {
-      defaultSelectedKeys: ["출퇴근"],
-      defaultOpenKeys: ["1"],
-      items: SIDE_NAV("commute"),
-    },
-    gallery: {
-      defaultSelectedKeys: ["사진첩"],
-      defaultOpenKeys: ["하마"],
-      items: SIDE_NAV("gallery"),
-    },
-  } as const;
-
-  return (
+  return path.length > 0 ? (
     <Sider width={200}>
-      <Menu mode="inline" style={{ height: "100%" }} {...data[path]} />
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={[menus[0].title, menus[0].sub[0].title]}
+        openKeys={[menus[0].title]}
+        onClick={() => console.log(path)}
+        style={{ height: "100%" }}
+        items={SIDE_NAV(path)}
+      />
     </Sider>
+  ) : (
+    <div></div>
   );
 }

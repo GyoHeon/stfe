@@ -15,7 +15,7 @@ export function MainLayout() {
     const pathname = path.pathname.split("/")[1];
 
     if (!pathname) {
-      navigate("/Wiki");
+      // navigate("/Wiki");
     }
   }, [path]);
 
