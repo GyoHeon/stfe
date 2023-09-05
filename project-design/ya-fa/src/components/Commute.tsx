@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useParam } from "../hooks/useParam";
 
 export function Commute() {
-  const item = useParam("item");
   const [date, setDate] = useState(new Date());
 
   return (
@@ -25,7 +23,7 @@ export function Commute() {
         }}
       >
         <span style={{ fontSize: "6em", fontWeight: "bolder" }}>
-          {date.getHours()} : {date.getMinutes()}
+          {date.getHours()} : {date.getMinutes().toString().padStart(2, "0")}
         </span>
         <div>
           <button>출근</button>

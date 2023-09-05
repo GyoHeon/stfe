@@ -60,10 +60,7 @@ export const SIDE_ITEMS = {
     {
       title: "출퇴근",
       icon: CalendarOutlined,
-      sub: [
-        { title: "남은 시간", url: "time" },
-        { title: "출/퇴근 기록부", url: "record" },
-      ],
+      sub: [{ title: "출/퇴근 기록부", url: "time" }],
     },
   ],
   gallery: [

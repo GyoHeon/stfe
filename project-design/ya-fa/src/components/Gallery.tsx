@@ -55,8 +55,8 @@ export function Gallery() {
         }}
       >
         {urls.map((item) => (
-          <li key={item} style={{ width: "200px", height: "200px" }}>
-            <img src={item} width={200} height={200} />
+          <li key={item} style={{ width: "300px", height: "300px" }}>
+            <img src={item} width={300} height={300} />
           </li>
         ))}
       </ul>
