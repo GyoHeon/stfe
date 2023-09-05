@@ -13,21 +13,11 @@ export const routes = createBrowserRouter([
         children: [
           {
             path: "wiki",
-            children: [
-              {
-                path: ":id",
-                element: <Wiki />,
-              },
-            ],
+            element: <Wiki />,
           },
           {
             path: "commute",
-            children: [
-              {
-                path: ":id",
-                element: <Wiki />,
-              },
-            ],
+            element: <Wiki />,
           },
           {
             path: "gallery",

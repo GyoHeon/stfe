@@ -1,10 +1,10 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { useLocation } from "react-router-dom";
-import { SIDE_ITEMS, SIDE_NAV, TCategory } from "../constants/layout";
+import { SIDE_ITEMS, SIDE_NAV } from "../constants/layout";
+import { usePath } from "../hooks/usePath";
 
 export function SideBar() {
-  const path = useLocation().pathname.split("/")[1] as TCategory;
+  const path = usePath();
   const menus = SIDE_ITEMS[path];
 
   return path.length > 0 ? (
@@ -13,7 +13,6 @@ export function SideBar() {
         mode="inline"
         defaultSelectedKeys={[menus[0].title, menus[0].sub[0].title]}
         openKeys={[menus[0].title]}
-        onClick={() => console.log(path)}
         style={{ height: "100%" }}
         items={SIDE_NAV(path)}
       />

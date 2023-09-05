@@ -13,15 +13,15 @@ import { Link, NavLink } from "react-router-dom";
 export const MAIN_TITLE = "Wiki for FastCampus";
 
 const NAV_ITEMS = [
-  { title: "Wiki", icon: ContainerOutlined },
-  { title: "commute", icon: CalendarOutlined },
-  { title: "gallery", icon: CameraOutlined },
+  { title: "Wiki", icon: ContainerOutlined, url: "Wiki?item=rules" },
+  { title: "commute", icon: CalendarOutlined, url: "commute?item=time" },
+  { title: "gallery", icon: CameraOutlined, url: "gallery?item=hippo" },
 ];
 export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map(
-  ({ title, icon }) => ({
+  ({ title, icon, url }) => ({
     key: title,
     icon: createElement(icon),
-    label: <NavLink to={`/${title}`}>{title}</NavLink>,
+    label: <NavLink to={`/${url}`}>{title}</NavLink>,
   })
 );
 
@@ -85,7 +85,7 @@ export const SIDE_NAV: (category: TCategory) => MenuProps["items"] = (
   return SIDE_ITEMS[category].map(({ title, icon, sub }) => ({
     key: title,
     icon: createElement(icon),
-    label: <Link to={`?${title}`}>{title}</Link>,
+    label: title,
 
     children: sub.map(({ title, url }) => ({
       key: title,

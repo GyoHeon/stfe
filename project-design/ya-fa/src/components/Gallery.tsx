@@ -6,15 +6,13 @@ import {
   ref,
 } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useItem } from "../hooks/useItem";
 import { fireBaseApp } from "../utils/firebase";
 
 export function Gallery() {
-  const [id] = useSearchParams();
+  const item = useItem();
   const [document, setDocument] = useState<ListResult | undefined>();
-  const [urls, setUrls] = useState<string[][]>([]);
-
-  const item = id.get("item") as string;
+  const [urls, setUrls] = useState<string[]>([]);
 
   useEffect(() => {
     const querySnapshot = async () => {
@@ -23,8 +21,6 @@ export function Gallery() {
       const refData = ref(storage, `/${item}`);
 
       const data = await listAll(refData);
-
-      console.log(data.items);
 
       setDocument(data);
     };
@@ -36,6 +32,8 @@ export function Gallery() {
       const allItems = document?.items?.map(async (ref) => {
         return getDownloadURL(ref);
       });
+
+      if (!allItems) return;
 
       const allUrls = await Promise.all(allItems);
 
@@ -51,13 +49,14 @@ export function Gallery() {
       <ul
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "10px",
           listStyle: "none",
         }}
       >
         {urls.map((item) => (
-          <li key={item} style={{ width: "100px", height: "100px" }}>
-            <img src={item} width={100} height={100} />
+          <li key={item} style={{ width: "200px", height: "200px" }}>
+            <img src={item} width={200} height={200} />
           </li>
         ))}
       </ul>
