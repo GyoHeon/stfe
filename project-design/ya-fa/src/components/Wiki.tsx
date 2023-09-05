@@ -1,6 +1,7 @@
 import { CheckSquareOutlined, EditOutlined } from "@ant-design/icons";
 import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useNavigate } from "react-router-dom";
 import { useParam } from "../hooks/useParam";
 import { db } from "../utils/firebase";
@@ -53,7 +54,7 @@ export function Wiki() {
               }}
               onChange={(e) => setText({ ...text, title: e.target.value })}
               value={text.title}
-            ></textarea>
+            />
 
             <CheckSquareOutlined
               style={{ fontSize: "40px" }}
@@ -62,14 +63,16 @@ export function Wiki() {
               onClick={handleSave}
             />
           </div>
+
           <time style={{ fontWeight: 500, borderBottom: "1px solid black" }}>
             최종 수정일 : {document && date.toUTCString()}
           </time>
+
           <textarea
             style={{ height: "100%", margin: "1em 0" }}
             onChange={(e) => setText({ ...text, content: e.target.value })}
             value={text.content}
-          ></textarea>
+          />
         </>
       ) : (
         <>
@@ -78,12 +81,14 @@ export function Wiki() {
 
             <EditOutlined style={{ fontSize: "40px" }} onClick={handleEdit} />
           </div>
+
           <time style={{ fontWeight: 500, borderBottom: "1px solid black" }}>
             최종 수정일 : {document && date.toUTCString()}
           </time>
-          <p style={{ whiteSpace: "pre-line" }}>
-            {document ? document.content : "Loading..."}
-          </p>
+
+          <ReactMarkdown
+            children={document ? document?.content : "Loading..."}
+          />
         </>
       )}
     </main>
