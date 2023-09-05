@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { Gallery } from "./components/Gallery";
 import { MainLayout } from "./components/MainLayout";
 import { Wiki } from "./components/Wiki";
 
@@ -17,7 +18,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "gallery",
-        element: <div>갤러리</div>,
+        element: <Gallery />,
       },
     ],
   },

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,6 +15,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const fireBaseApp = initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+export const db = getFirestore(fireBaseApp);
+
+export const storage = getStorage(fireBaseApp);

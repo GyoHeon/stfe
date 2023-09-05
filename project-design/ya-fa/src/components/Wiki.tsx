@@ -1,9 +1,4 @@
-import {
-  DocumentData,
-  DocumentSnapshot,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { DocumentData, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
 
@@ -12,16 +7,13 @@ export function Wiki() {
   const date = new Date((document?.date?.seconds || 0) * 1000);
 
   useEffect(() => {
-    let data: DocumentSnapshot<DocumentData, DocumentData>;
     const querySnapshot = async () => {
-      data = await getDoc(doc(db, "wiki", "rules"));
+      const data = await getDoc(doc(db, "wiki", "rules"));
 
       setDocument(data.data());
     };
     querySnapshot();
   }, []);
-
-  console.log(document);
 
   return (
     <div>
