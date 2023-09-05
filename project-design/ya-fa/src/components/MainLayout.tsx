@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Foot } from "./Foot";
 import { Head } from "./Head";
-import { MainContent } from "./MainContent";
 import { SideBar } from "./SideBar";
 
 const { Content } = Layout;
@@ -27,8 +26,9 @@ export function MainLayout() {
         <Layout style={{ padding: "24px 0" }}>
           <SideBar />
 
-          <MainContent />
-          <Outlet />
+          <div style={{ padding: "0 24px" }}>
+            <Outlet />
+          </div>
         </Layout>
       </Content>
       <Foot />

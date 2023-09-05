@@ -19,7 +19,7 @@ export function SideBar() {
     },
     gallery: {
       defaultSelectedKeys: ["사진첩"],
-      defaultOpenKeys: ["1"],
+      defaultOpenKeys: ["하마"],
       items: SIDE_NAV("gallery"),
     },
   } as const;

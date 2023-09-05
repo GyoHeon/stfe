@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./components/MainLayout";
+import { Wiki } from "./components/Wiki";
 
 export const routes = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "wiki",
-        element: <div>Wiki</div>,
+        element: <Wiki />,
       },
       {
         path: "commute",

@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { createElement } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const MAIN_TITLE = "Wiki for FastCampus";
 
@@ -32,48 +32,35 @@ const SIDE_ITEMS = {
     {
       title: "회사생활",
       icon: UserOutlined,
-      sub: [
-        { title: "회사내규", icon: UserOutlined },
-        { title: "팀 소개", icon: UserOutlined },
-        { title: "조직도", icon: UserOutlined },
-      ],
+      sub: [{ title: "회사내규" }, { title: "팀 소개" }, { title: "조직도" }],
     },
     {
       title: "프로젝트",
       icon: LaptopOutlined,
       sub: [
-        { title: "진행중인 프로젝트", icon: UserOutlined },
-        { title: "예정된 프로젝트", icon: UserOutlined },
-        { title: "완료된 프로젝트", icon: UserOutlined },
+        { title: "진행중인 프로젝트" },
+        { title: "예정된 프로젝트" },
+        { title: "완료된 프로젝트" },
       ],
     },
     {
       title: "온보딩",
       icon: NotificationOutlined,
-      sub: [
-        { title: "신입사원 필독서", icon: UserOutlined },
-        { title: "온보딩 주제", icon: UserOutlined },
-      ],
+      sub: [{ title: "신입사원 필독서" }, { title: "온보딩 주제" }],
     },
   ],
   commute: [
     {
       title: "출퇴근",
       icon: CalendarOutlined,
-      sub: [
-        { title: "1", icon: CalendarOutlined },
-        { title: "2", icon: UserOutlined },
-      ],
+      sub: [{ title: "1" }, { title: "2" }],
     },
   ],
   gallery: [
     {
       title: "사진첩",
       icon: CameraOutlined,
-      sub: [
-        { title: "1", icon: UserOutlined },
-        { title: "2", icon: UserOutlined },
-      ],
+      sub: [{ title: "하마" }, { title: "불독" }, { title: "판다" }],
     },
   ],
 };
@@ -84,7 +71,7 @@ export const SIDE_NAV: (category: TCategory) => MenuProps["items"] = (
   return SIDE_ITEMS[category].map(({ title, icon, sub }) => ({
     key: title,
     icon: createElement(icon),
-    label: title,
+    label: <Link to={`?${title}`}>{title}</Link>,
 
     children: sub.map(({ title }) => ({
       key: title,
