@@ -1,5 +1,6 @@
 import { Layout } from "antd";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Foot } from "./Foot";
 import { Head } from "./Head";
 import { MainContent } from "./MainContent";
@@ -8,6 +9,17 @@ import { SideBar } from "./SideBar";
 const { Content } = Layout;
 
 export function MainLayout() {
+  const path = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const pathname = path.pathname.split("/")[1];
+
+    if (!pathname) {
+      navigate("/Wiki");
+    }
+  }, [path]);
+
   return (
     <Layout style={{ height: "100vh" }}>
       <Head />

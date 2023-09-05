@@ -11,13 +11,14 @@ export function Head() {
       style={{
         display: "flex",
         alignItems: "center",
+        justifyContent: "space-between",
         gap: "40px",
         color: "white",
       }}
     >
       <h1>{MAIN_TITLE}</h1>
       <Menu
-        style={{ width: "400px" }}
+        style={{ width: "300px" }}
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={["Wiki"]}

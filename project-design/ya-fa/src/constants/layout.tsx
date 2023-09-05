@@ -1,4 +1,7 @@
 import {
+  CalendarOutlined,
+  CameraOutlined,
+  ContainerOutlined,
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
@@ -9,11 +12,18 @@ import { NavLink } from "react-router-dom";
 
 export const MAIN_TITLE = "Wiki for FastCampus";
 
-const NAV_ITEMS = ["Wiki", "commute", "gallery"];
-export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map((menu) => ({
-  key: menu,
-  label: <NavLink to={`/${menu}`}>{menu}</NavLink>,
-}));
+const NAV_ITEMS = [
+  { title: "Wiki", icon: ContainerOutlined },
+  { title: "commute", icon: CalendarOutlined },
+  { title: "gallery", icon: CameraOutlined },
+];
+export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map(
+  ({ title, icon }) => ({
+    key: title,
+    icon: createElement(icon),
+    label: <NavLink to={`/${title}`}>{title}</NavLink>,
+  })
+);
 
 type TCategory = "Wiki" | "commute" | "gallery";
 
@@ -49,26 +59,28 @@ const SIDE_ITEMS = {
   commute: [
     {
       title: "출퇴근",
-      icon: UserOutlined,
+      icon: CalendarOutlined,
       sub: [
-        { title: "신입사원 필독서", icon: UserOutlined },
-        { title: "온보딩 주제", icon: UserOutlined },
+        { title: "1", icon: CalendarOutlined },
+        { title: "2", icon: UserOutlined },
       ],
     },
   ],
   gallery: [
     {
       title: "사진첩",
-      icon: UserOutlined,
+      icon: CameraOutlined,
       sub: [
-        { title: "신입사원 필독서", icon: UserOutlined },
-        { title: "온보딩 주제", icon: UserOutlined },
+        { title: "1", icon: UserOutlined },
+        { title: "2", icon: UserOutlined },
       ],
     },
   ],
-} as const;
+};
 
-export const SIDE_NAV: MenuProps["items"] = (category: TCategory) => {
+export const SIDE_NAV: (category: TCategory) => MenuProps["items"] = (
+  category: TCategory
+) => {
   return SIDE_ITEMS[category].map(({ title, icon, sub }) => ({
     key: title,
     icon: createElement(icon),

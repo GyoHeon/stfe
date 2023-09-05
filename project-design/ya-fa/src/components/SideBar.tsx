@@ -14,12 +14,12 @@ export function SideBar() {
     },
     commute: {
       defaultSelectedKeys: ["출퇴근"],
-      defaultOpenKeys: [""],
+      defaultOpenKeys: ["1"],
       items: SIDE_NAV("commute"),
     },
     gallery: {
       defaultSelectedKeys: ["사진첩"],
-      defaultOpenKeys: ["회사생활"],
+      defaultOpenKeys: ["1"],
       items: SIDE_NAV("gallery"),
     },
   } as const;

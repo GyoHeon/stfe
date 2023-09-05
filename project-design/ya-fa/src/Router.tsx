@@ -7,19 +7,15 @@ export const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "/",
-        element: <div>Home</div>,
-      },
-      {
-        path: "/wiki",
+        path: "wiki",
         element: <div>Wiki</div>,
       },
       {
-        path: "/commute",
+        path: "commute",
         element: <div>출퇴근</div>,
       },
       {
-        path: "/gallery",
+        path: "gallery",
         element: <div>갤러리</div>,
       },
     ],
