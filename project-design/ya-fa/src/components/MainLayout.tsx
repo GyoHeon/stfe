@@ -23,10 +23,10 @@ export function MainLayout() {
     <Layout style={{ height: "100vh" }}>
       <Head />
       <Content style={{ padding: "0 50px" }}>
-        <Layout style={{ padding: "24px 0" }}>
+        <Layout style={{ height: "100%", padding: "24px 0" }}>
           <SideBar />
 
-          <div style={{ padding: "0 24px" }}>
+          <div style={{ width: "100%", height: "100%", padding: "0 24px" }}>
             <Outlet />
           </div>
         </Layout>

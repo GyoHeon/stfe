@@ -4,3 +4,19 @@ body {
   margin: 0;
   background: #fff;
 }
+
+textarea {
+  display: block;
+  padding: 0;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
