@@ -6,11 +6,11 @@ import {
   ref,
 } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { useItem } from "../hooks/useItem";
+import { useParam } from "../hooks/useParam";
 import { fireBaseApp } from "../utils/firebase";
 
 export function Gallery() {
-  const item = useItem();
+  const item = useParam("item");
   const [document, setDocument] = useState<ListResult | undefined>();
   const [urls, setUrls] = useState<string[]>([]);
 

@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 
-export const useItem = () => {
+export const useParam = (param: string) => {
   const [id] = useSearchParams();
 
-  return id.get("item");
+  return id.get(param);
 };

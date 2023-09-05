@@ -1,15 +1,18 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { SIDE_ITEMS, SIDE_NAV } from "../constants/layout";
-import { useItem } from "../hooks/useItem";
+import { useParam } from "../hooks/useParam";
 import { usePath } from "../hooks/usePath";
 
 export function SideBar() {
   const path = usePath();
-  const item = useItem();
+  const item = useParam("item");
+  const isEditing = useParam("edit");
   const menus = SIDE_ITEMS[path];
 
-  return path.length > 0 ? (
+  const showSide = path.length > 0 && !isEditing;
+
+  return showSide ? (
     <Sider width={200}>
       <Menu
         mode="inline"

@@ -1,20 +1,21 @@
 import { CheckSquareOutlined, EditOutlined } from "@ant-design/icons";
 import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useItem } from "../hooks/useItem";
+import { useNavigate } from "react-router-dom";
+import { useParam } from "../hooks/useParam";
 import { db } from "../utils/firebase";
 
 export function Wiki() {
-  const item = useItem();
+  const item = useParam("item");
+  const navigate = useNavigate();
   const [document, setDocument] = useState<DocumentData | undefined>();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState({ title: "", content: "" });
   const date = new Date((document?.date?.seconds || 0) * 1000);
 
-  console.log(new Date());
-
   const handleEdit = () => {
     setIsEditing(true);
+    navigate(`/Wiki?item=${item}&edit=true`);
     setText({ title: document?.title, content: document?.content });
   };
   const handleSave = async () => {
@@ -24,6 +25,7 @@ export function Wiki() {
       ...text,
       date,
     });
+    navigate(`/Wiki?item=${item}`);
     setIsEditing(false);
   };
 
@@ -50,9 +52,8 @@ export function Wiki() {
                 borderBottom: "1px solid black",
               }}
               onChange={(e) => setText({ ...text, title: e.target.value })}
-            >
-              {text.title}
-            </textarea>
+              value={text.title}
+            ></textarea>
 
             <CheckSquareOutlined
               style={{ fontSize: "40px" }}
@@ -67,9 +68,8 @@ export function Wiki() {
           <textarea
             style={{ height: "100%", margin: "1em 0" }}
             onChange={(e) => setText({ ...text, content: e.target.value })}
-          >
-            {text.content}
-          </textarea>
+            value={text.content}
+          ></textarea>
         </>
       ) : (
         <>
