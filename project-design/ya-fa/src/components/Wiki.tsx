@@ -1,5 +1,5 @@
 import { CheckSquareOutlined, EditOutlined } from "@ant-design/icons";
-import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
+import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore/lite";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useNavigate } from "react-router-dom";

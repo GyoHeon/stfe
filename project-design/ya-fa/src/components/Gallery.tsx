@@ -15,6 +15,7 @@ import { fireBaseApp } from "../utils/firebase";
 
 export function Gallery() {
   const item = useParam("item");
+  const [haveToDownload, setHaveToDownload] = useState(true);
   const [storageRef, setStorageRef] = useState<StorageReference | undefined>();
   const [document, setDocument] = useState<ListResult | undefined>();
   const [file, setFile] = useState<Blob | undefined>(undefined);
@@ -24,10 +25,9 @@ export function Gallery() {
   const handleSubmit = async () => {
     const uploadRef = ref(storageRef!, file?.name);
     if (file) {
-      console.log(file);
       try {
-        const result = await uploadBytes(uploadRef!, file);
-        console.log(result);
+        await uploadBytes(uploadRef!, file);
+        setHaveToDownload(true);
       } catch (e) {
         alert(e);
       }
@@ -48,8 +48,11 @@ export function Gallery() {
 
       setDocument(data);
     };
-    querySnapshot();
-  }, [item]);
+    if (haveToDownload) {
+      setHaveToDownload(false);
+      querySnapshot();
+    }
+  }, [haveToDownload, item]);
 
   useEffect(() => {
     const allPictures = async () => {
