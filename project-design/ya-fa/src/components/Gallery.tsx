@@ -4,14 +4,13 @@ import {
   ListResult,
   StorageReference,
   getDownloadURL,
-  getStorage,
   listAll,
   ref,
   uploadBytes,
 } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useParam } from "../hooks/useParam";
-import { fireBaseApp } from "../utils/firebase";
+import { storage } from "../utils/firebase";
 
 export function Gallery() {
   const item = useParam("item");
@@ -24,10 +23,12 @@ export function Gallery() {
 
   const handleSubmit = async () => {
     const uploadRef = ref(storageRef!, file?.name);
+
     if (file) {
       try {
         await uploadBytes(uploadRef!, file);
         setHaveToDownload(true);
+        setFile(undefined);
       } catch (e) {
         alert(e);
       }
@@ -39,8 +40,6 @@ export function Gallery() {
 
   useEffect(() => {
     const querySnapshot = async () => {
-      const storage = getStorage(fireBaseApp);
-
       const refData = ref(storage, `/${item}`);
       setStorageRef(refData);
 

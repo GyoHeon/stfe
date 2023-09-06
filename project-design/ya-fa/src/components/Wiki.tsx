@@ -19,6 +19,7 @@ export function Wiki() {
     navigate(`/Wiki?item=${item}&edit=true`);
     setText({ title: document?.title, content: document?.content });
   };
+
   const handleSave = async () => {
     const date = new Date();
 
