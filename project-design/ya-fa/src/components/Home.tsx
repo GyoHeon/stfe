@@ -14,11 +14,12 @@ export function Home() {
   return (
     <>
       <h1>FastCampus 공지</h1>
-      <Carousel autoplay>
+      <Carousel autoplay style={{ width: "calc(100vw - 200px)" }}>
         <div style={{ position: "relative" }}>
           <img
             src="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202307/094135-397/변환-삼성-강남-mo.webp"
-            height={250}
+            height="auto"
+            width="100%"
           />
           <h1 style={contentStyle}>
             삼성 강남과 함께하는
@@ -29,7 +30,8 @@ export function Home() {
         <div>
           <img
             src="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202309/172722-1019/0-depth-banner-mob.png"
-            height={250}
+            height="auto"
+            width="100%"
           />
           <h1 style={contentStyle}>
             하반기 공채 지원?
@@ -40,7 +42,8 @@ export function Home() {
         <div>
           <img
             src="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202309/112250-964/0-depth-banner-mob.webp"
-            height={250}
+            height="auto"
+            width="100%"
           />
           <h1 style={contentStyle}>
             이번 주엔 누구나 1+1
@@ -51,7 +54,8 @@ export function Home() {
         <div>
           <img
             src="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202305/043836-964/5번-0-depth-banner-mob.webp"
-            height={250}
+            height="auto"
+            width="100%"
           />
           <h1 style={contentStyle}>
             백엔드 개발자라면?
