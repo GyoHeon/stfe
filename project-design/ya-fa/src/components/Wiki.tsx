@@ -58,8 +58,6 @@ export function Wiki() {
 
             <CheckSquareOutlined
               style={{ fontSize: "40px" }}
-              width={30}
-              height={30}
               onClick={handleSave}
             />
           </div>

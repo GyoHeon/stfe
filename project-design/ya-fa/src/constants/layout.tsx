@@ -70,6 +70,8 @@ export const SIDE_ITEMS = {
         { title: "하마", url: "hippo" },
         { title: "불독", url: "booldog" },
         { title: "판다", url: "panda" },
+        { title: "협력사", url: "related-sites" },
+        { title: "채용공고", url: "hr" },
       ],
     },
   ],
