@@ -14,7 +14,7 @@ export const MAIN_TITLE = "Wiki for FastCampus";
 
 const NAV_ITEMS = [
   { title: "Wiki", icon: ContainerOutlined, url: "Wiki?item=rules" },
-  { title: "gallery", icon: CameraOutlined, url: "gallery?item=hippo" },
+  { title: "gallery", icon: CameraOutlined, url: "gallery?item=related-sites" },
 ];
 export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map(
   ({ title, icon, url }) => ({
@@ -67,9 +67,6 @@ export const SIDE_ITEMS = {
       title: "사진첩",
       icon: CameraOutlined,
       sub: [
-        { title: "하마", url: "hippo" },
-        { title: "불독", url: "booldog" },
-        { title: "판다", url: "panda" },
         { title: "협력사", url: "related-sites" },
         { title: "채용공고", url: "hr" },
       ],
