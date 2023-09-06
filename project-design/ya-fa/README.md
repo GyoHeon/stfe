@@ -8,10 +8,10 @@
 ## [과제 수행 및 제출 방법]
 
 1. 현재 저장소를 로컬에 클론(Clone)합니다.
-2. 자신의 본명으로 브랜치를 생성합니다.(구분 가능하도록 본명을 꼭 파스칼케이스로 표시하세요, git branch Y_FE_0\_이름)
+2. 자신의 본명으로 브랜치를 생성합니다.(구분 가능하도록 본명을 꼭 파스칼케이스로 표시하세요, git branch Y_FE_Mini\_이름)
 3. 자신의 본명 브랜치에서 과제를 수행합니다.
-4. 과제 수행이 완료되면, 자신의 본명 브랜치를 원격 저장소에 푸시(Push)합니다.(main 브랜치에 푸시하지 않도록 꼭 주의하세요, git push origin Y_FE_0\_이름)
-5. 저장소에서 main 브랜치를 대상으로 Pull Request 생성하면, 과제 제출이 완료됩니다!(E.g, main <== Y_FE_0\_이름)
+4. 과제 수행이 완료되면, 자신의 본명 브랜치를 원격 저장소에 푸시(Push)합니다.(main 브랜치에 푸시하지 않도록 꼭 주의하세요, git push origin Y_FE_Mini\_이름)
+5. 저장소에서 main 브랜치를 대상으로 Pull Request 생성하면, 과제 제출이 완료됩니다!(E.g, main <== Y_FE_Mini\_이름)
 6. Pull Request 링크를 LMS로도 제출해 주셔야 합니다.
 7. main 혹은 다른 사람의 브랜치로 절대 병합하지 않도록 주의하세요!
 8. Pull Request에서 보이는 설명을 다른 사람들이 이해하기 쉽도록 꼼꼼하게 작성하세요!
@@ -21,7 +21,7 @@
 ## [필수 구현사항]
 
 - [ ] 문서편집, revision 기능을 제공하여 업무일지를 작성할 수 있는 직원들을 위한 위키사이트 구현(마크다운)
-- [ ] firebase database (firestore) 이용
+- [ ] firebase database (Firestore) 이용
 - [ ] 모달을 활용한 근무 시간을 표시하는 시계 및 타이머 창 구현(첨부파일1 참고)
 - [ ] 캐러셀을 활용한 회사 공지 페이지(첨부파일2 참고)
 - [ ] 사용자들의 선택지를 종합하여 분류 결과를 내는 알고리즘 구현
@@ -42,7 +42,7 @@
 
 ## [화면 예시]
 
-![111](https://github.com/KDT1-FE/Y_FE_JAVASCRIPT_PICTURE/assets/96465306/f1afed4b-547e-4289-8e83-2f0fa188cccb)
+![carousel](https://github.com/GyoHeon/stfe/tree/main/project-design/ya-fa/public/carousel.webp)
 ![222](https://github.com/KDT1-FE/Y_FE_JAVASCRIPT_PICTURE/assets/96465306/72f1ea35-8965-4050-9d0b-b9f27c933f64)
 
 ## [Firestore]
