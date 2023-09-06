@@ -2,7 +2,7 @@ import { CalendarOutlined } from "@ant-design/icons";
 import { Button, Menu, Modal } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { MAIN_TITLE, NAV_MENU } from "../constants/layout";
 import { TimeModal } from "./TimeModal";
 
@@ -19,7 +19,9 @@ export function Head() {
         color: "white",
       }}
     >
-      <h1>{MAIN_TITLE}</h1>
+      <Link to="/" style={{ color: "white" }}>
+        <h1>{MAIN_TITLE}</h1>
+      </Link>
 
       <Menu
         style={{ width: "190px", marginLeft: "auto" }}
