@@ -51,7 +51,19 @@ export function Gallery() {
       setHaveToDownload(false);
       querySnapshot();
     }
-  }, [haveToDownload, item]);
+  }, [haveToDownload]);
+
+  useEffect(() => {
+    const querySnapshot = async () => {
+      const refData = ref(storage, `/${item}`);
+      setStorageRef(refData);
+
+      const data = await listAll(refData);
+
+      setDocument(data);
+    };
+    querySnapshot();
+  }, [item]);
 
   useEffect(() => {
     const allPictures = async () => {
