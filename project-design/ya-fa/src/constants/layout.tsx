@@ -14,7 +14,6 @@ export const MAIN_TITLE = "Wiki for FastCampus";
 
 const NAV_ITEMS = [
   { title: "Wiki", icon: ContainerOutlined, url: "Wiki?item=rules" },
-  { title: "commute", icon: CalendarOutlined, url: "commute?item=time" },
   { title: "gallery", icon: CameraOutlined, url: "gallery?item=hippo" },
 ];
 export const NAV_MENU: MenuProps["items"] = NAV_ITEMS.map(
