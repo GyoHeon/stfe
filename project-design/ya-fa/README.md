@@ -42,7 +42,10 @@
 
 ## [화면 예시]
 
-![carousel](https://github.com/GyoHeon/stfe/tree/main/project-design/ya-fa/public/carousel.webp)
+![carousel](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/carousel.webp)
+![commute](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/commute.webp)
+![wiki](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/wiki.webp)
+![gallery](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/gallery.webp)
 ![222](https://github.com/KDT1-FE/Y_FE_JAVASCRIPT_PICTURE/assets/96465306/72f1ea35-8965-4050-9d0b-b9f27c933f64)
 
 ## [Firestore]
