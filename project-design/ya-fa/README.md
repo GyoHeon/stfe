@@ -38,14 +38,167 @@
 
 ## 가이드
 
-아래 예시는 모두 하나의 의견입니다! 따라하는게 아니라 자신만의 결과물을 만들어보세요.
+아래 예시는 모두 하나의 의견입니다!  
+따라하는게 아니라 자신만의 결과물을 만들어보세요.
 
 ## [화면 예시]
 
+### 공지사항
+
 ![carousel](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/carousel.webp)
+
+### 모달 타이머
+
 ![commute](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/commute.webp)
+
+### 마크다운 위키사이트
+
 ![wiki](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/wiki.webp)
+
+### 갤러리
+
 ![gallery](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/gallery.webp)
-![222](https://github.com/KDT1-FE/Y_FE_JAVASCRIPT_PICTURE/assets/96465306/72f1ea35-8965-4050-9d0b-b9f27c933f64)
 
 ## [Firestore]
+
+Firestore에 대한 가이드입니다.  
+자세한 내용은 [공식 홈페이지](https://firebase.google.com/?hl=ko)를 찾아보길 적극 권장합니다.
+
+### App init
+
+```js
+import { getFirestore } from "firebase/firestore";
+
+export const db = getFirestore(fireBaseApp);
+```
+
+---
+
+### Firestore 데이터 추가하기
+
+Firestore의 데이터를 추가하는 방법은 크게 두가지이다.
+
+1. Firebase console에서 손수 데이터 추가해주기
+2. 코드로 데이터 추가하기
+
+#### 1. Firebase console에서 손수 데이터 추가해주기
+
+1. [Firebase console](https://console.firebase.google.com/u/0/?hl=ko)에 접속한다.
+2. 자신의 프로젝트를 선택한다.
+3. 왼쪽 메뉴에서 `Firestore Database`를 선택한다.
+4. `+ 버튼`을 눌러 컬렉션 > 문서를 마음대로 추가해준다.
+5. 필드를 추가하여 문서에 데이터를 넣어준다.
+
+#### 2. 코드로 데이터 추가하기
+
+Firestore는 `setDoc`, `addDoc` 두 가지 함수로 데이터를 추가할 수 있다.
+
+이제 원하는 데이터를 추가해보자.
+
+##### 1. `addDoc`
+
+`addDoc`은 아래와 같이 사용하여 원하는 데이터를 추가할 수 있다.
+
+```ts
+import { addDoc, collection } from "firebase/firestore";
+
+const writtenDoc = await addDoc(collection(db, "wiki"), {
+  title: "LGH",
+  description: "허먼밀러...사고싶다...",
+});
+
+console.log("Document written with ID: ", writtenDoc.id);
+// 새로 생성된 Document의 ID를 반환한다.
+```
+
+원하는 데이터를 추가하기 위해선 먼저 원하는 collection을 선택해야 한다.
+위 예제의 `addDoc` 안에서 사용한 `collection` 함수는 db상에 있는 collection을 선택하거나 없을 경우 새로운 collection을 생성하여 반환한다.
+
+Firebase의 Doc는 기본적으로 ID를 가져야 하는데, addDoc을 사용하면 ID를 자동으로 만든다.
+또한, 이미 존재하는 Doc에 `addDoc`을 사용하면 에러가 발생한다.
+
+##### 2. `setDoc`
+
+`setDoc`은 아래와 같이 사용하여 원하는 데이터를 추가할 수 있다.
+
+```ts
+import { setDoc, doc } from "firebase/firestore";
+
+await setDoc(doc(db, "wiki", "new-id"), {
+  title: "LGH",
+  description: "허먼밀러...사고싶다...",
+});
+```
+
+`addDoc`과의 차이점은
+
+1. **id** 를 지정해줘야함
+2. `collection` 대신 `doc`을 사용함
+3. 이미 존재하는 Doc에 사용가능
+
+3가지 이다.
+
+`setDoc`은 `addDoc`과 달리 collection이 아니라 doc를 선택해야 한다.
+이는 `setDoc`이 데이터의 추가 뿐 아니라 데이터 덮어쓰기 기능도 가지고 있기 때문이다.
+러프하게 생각해보면 `setDoc`은 데이터를 추가할 때
+
+1. doc을 선택하거나 새로운 doc을 생성
+2. doc의 내용을 덮어씀
+
+의 방식으로 동작하는 것이다.
+
+Doc을 선택하는 방법은 `doc` 함수를 사용하는 것이다.
+[`doc()`](https://firebase.google.com/docs/reference/js/firestore_.md?hl=ko#doc) 함수는 `DocumentReference` instance를 반환한다.
+절대 경로를 사용하여 원하는 Document를 선택할 수 있다.
+위에서 만들어둔 `wiki > completed` 문서는 아래처럼 불러올 수 있다.
+
+```ts
+import { doc } from "firebase/firestore";
+
+const docRef = doc(db, "wiki", "completed");
+```
+
+`doc` 함수의 3번째 인자가 바로 **id** 이다.
+id는 이미 존재하는 Doc의 id를 사용할 수도 있고, 새로운 id를 사용할 수도 있다.
+존재하는 id를 사용하는 경우에는 해당 Doc의 데이터를 덮어쓰게 된다.
+그렇지 않은 경우엔 새로운 Doc를 생성한다.
+
+어쨌거나 데이터를 새로 추가할 수 있는 것이다.
+
+---
+
+### Firestore 데이터 수정하기
+
+Firestore의 데이터를 수정하는 방법은 크게 두가지이다.
+
+1. Firebase console에서 손수 데이터 수정해주기
+2. 코드로 데이터 수정하기
+
+1번은 데이터 생성과 비슷하게 진행하면 된다.
+
+#### 2. 코드로 데이터 수정하기
+
+Firestore는 `setDoc`, `update` 두 가지 함수로 데이터를 추가할 수 있다.
+
+`setDoc`을 사용하는 방법은 위에 적혀있다.
+
+##### `update`
+
+`setDoc`은 데이터를 덮어쓴다.
+따라서 기존의 문서를 유지한 채 일부분의 데이터만 변경하고 싶어도 이전의 데이터를 모두 새로 입력해야 한다.
+
+그러나 `update`는 기존의 데이터를 유지한 채 일부분의 데이터만 변경할 수 있다.
+
+```ts
+import { updateDoc, doc } from "firebase/firestore";
+
+await updateDoc(doc(db, "wiki", "new-id"), {
+  description: "허먼밀러...200만원...",
+});
+```
+
+위와 같이 코드를 작성하면 `new-id`라는 id를 가진 문서의 description만 변경된다.
+
+## 참조
+
+[Firebase](https://firebase.google.com/docs?hl=ko)
