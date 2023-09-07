@@ -49,15 +49,15 @@
 
 ### 모달 타이머
 
-![commute](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/commute.mov)
+https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/commute.mov
 
 ### 마크다운 위키사이트
 
-![wiki](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/wiki.mov)
+https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/wiki.mov
 
 ### 갤러리
 
-![gallery](https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/gallery.mov)
+https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/gallery.mov
 
 ## [Firestore]
 
