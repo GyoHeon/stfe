@@ -11,6 +11,11 @@ export function Time({ initialDate }: TimeProps) {
   const [initialTime, setInitialTime] = useState(initialDate);
   const [isOn, setIsOn] = useState(false);
 
+  const visibleDate = `${date.getHours()} : ${date
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")} : ${date.getSeconds().toString().padStart(2, "0")}`;
+
   const startWork = () => {
     setInitialTime(new Date());
     setIsOn(!isOn);
@@ -46,25 +51,22 @@ export function Time({ initialDate }: TimeProps) {
           }}
         >
           {isOn && (
-            <>
-              <div
-                style={{
-                  fontSize: "1rem",
-                  backgroundColor: "lime",
-                  padding: "0.2em 0.5em",
-                  lineHeight: "1em",
-                  borderRadius: "0.5em",
-                  position: "absolute",
-                  left: "-30px",
-                  top: "50px",
-                }}
-              >
-                on
-              </div>
-            </>
+            <div
+              style={{
+                fontSize: "1rem",
+                backgroundColor: "lime",
+                padding: "0.2em 0.5em",
+                lineHeight: "1em",
+                borderRadius: "0.5em",
+                position: "absolute",
+                left: "-30px",
+                top: "50px",
+              }}
+            >
+              on
+            </div>
           )}
-          {date.getHours()} : {date.getMinutes().toString().padStart(2, "0")} :{" "}
-          {date.getSeconds().toString().padStart(2, "0")}
+          {visibleDate}
         </div>
       </span>
 

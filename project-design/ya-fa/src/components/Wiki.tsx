@@ -6,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useParam } from "../hooks/useParam";
 import { db } from "../utils/firebase";
 
+const textareaStyle: React.CSSProperties = {
+  height: "1.5em",
+  fontWeight: "bolder",
+  fontSize: "1.5em",
+  margin: "0.83em 0",
+  borderBottom: "1px solid black",
+};
+
 export function Wiki() {
   const item = useParam("item");
   const navigate = useNavigate();
@@ -42,17 +50,11 @@ export function Wiki() {
 
   return (
     <main style={{ height: "100%" }}>
-      {isEditing ? (
-        <>
-          <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {isEditing ? (
+          <>
             <textarea
-              style={{
-                height: "1.5em",
-                fontWeight: "bolder",
-                fontSize: "1.5em",
-                margin: "0.83em 0",
-                borderBottom: "1px solid black",
-              }}
+              style={textareaStyle}
               onChange={(e) => setText({ ...text, title: e.target.value })}
               value={text.title}
             />
@@ -61,34 +63,28 @@ export function Wiki() {
               style={{ fontSize: "40px" }}
               onClick={handleSave}
             />
-          </div>
-
-          <time style={{ fontWeight: 500, borderBottom: "1px solid black" }}>
-            최종 수정일 : {document && date.toUTCString()}
-          </time>
-
-          <textarea
-            style={{ height: "100%", margin: "1em 0" }}
-            onChange={(e) => setText({ ...text, content: e.target.value })}
-            value={text.content}
-          />
-        </>
-      ) : (
-        <>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h2>{document ? document.title : "Loading..."}</h2>
+          </>
+        ) : (
+          <>
+            <h2>{document?.title || "Loading..."}</h2>
 
             <EditOutlined style={{ fontSize: "40px" }} onClick={handleEdit} />
-          </div>
+          </>
+        )}
+      </div>
 
-          <time style={{ fontWeight: 500, borderBottom: "1px solid black" }}>
-            최종 수정일 : {document && date.toUTCString()}
-          </time>
+      <time style={{ fontWeight: 500, borderBottom: "1px solid black" }}>
+        최종 수정일 : {document ? date.toUTCString() : "Loading..."}
+      </time>
 
-          <ReactMarkdown
-            children={document ? document?.content : "Loading..."}
-          />
-        </>
+      {isEditing ? (
+        <textarea
+          style={{ height: "100%", margin: "1em 0" }}
+          onChange={(e) => setText({ ...text, content: e.target.value })}
+          value={text.content}
+        />
+      ) : (
+        <ReactMarkdown children={document?.content || "Loading..."} />
       )}
     </main>
   );
