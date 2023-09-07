@@ -59,6 +59,9 @@ https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/
 
 https://raw.githubusercontent.com/GyoHeon/stfe/main/project-design/ya-fa/public/gallery.mov
 
+https://github.com/GyoHeon/stfe/assets/66263916/137f6bfd-3b94-4efb-89cc-06a9c27691fe
+
+
 ## [Firestore]
 
 Firestore에 대한 가이드입니다.  
