@@ -10,3 +10,5 @@ socket.emit("join", { username, room }, (error) => {
     location.href = "/";
   }
 });
+
+socket.on("message", (message) => {});

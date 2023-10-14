@@ -2,13 +2,12 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
-import { addUser, users } from "./utils/users";
+import { generateMessage } from "./utils/message";
+import { addUser, getUsersInRoom } from "./utils/users";
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
-
-export const users = [];
 
 io.on("connection", (socket) => {
   console.log("socket id:", socket.id);
@@ -18,15 +17,31 @@ io.on("connection", (socket) => {
 
     if (error) {
       return callback(error);
+    } else {
+      socket.join(user.room);
     }
 
-    socket.join(user.room);
+    socket.emit(
+      "message",
+      generateMessage("Admin", `Welcome, this room is ${user.room}`)
+    );
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "message",
+        generateMessage("", `New user ${user.username} has joined!`)
+      );
 
-    users.push(user);
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
   });
+
   socket.on("sendMessage", (message) => {
     console.log("sendMessage", { message });
   });
+
   socket.on("disconnect", (message) => {
     console.log("disconnect", { message });
   });
