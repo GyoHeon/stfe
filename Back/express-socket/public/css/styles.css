@@ -71,6 +71,9 @@ main.chat-main {
 }
 #messages {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .chat-bubble {
   display: flex;
@@ -78,9 +81,16 @@ main.chat-main {
   padding: 10px;
   margin: 10px;
   border-radius: 8px;
-  background-color: white;
+  background-color: #fff;
   color: black;
   max-width: 50%;
+}
+.chat-bubble * {
+  color: black;
+}
+.chat-bubble.my {
+  align-self: flex-end;
+  background-color: cornflowerblue;
 }
 .chat-bubble > date {
   text-align: right;

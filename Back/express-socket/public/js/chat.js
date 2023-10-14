@@ -38,7 +38,9 @@ socket.on("message", (message) => {
     message.createdAt
   );
 
-  const htmlWelcome = `<article class='chat-bubble'>
+  const isMine = message.username === username;
+
+  const htmlWelcome = `<article class='chat-bubble ${isMine ? "my" : ""}'>
     <span>${message.username}</span>
     <span>${message.text}</span>
     <date>${dateFormatted}</date>
@@ -47,4 +49,27 @@ socket.on("message", (message) => {
   chat.insertAdjacentHTML("beforeend", htmlWelcome);
 
   scrollBottom();
+});
+
+const messageForm = document.querySelector("form#message");
+const messageInput = messageForm.querySelector("input");
+const messageButton = messageForm.querySelector("button");
+
+messageForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  messageButton.setAttribute("disabled", "disabled");
+
+  const message = e.target.elements.message.value;
+
+  socket.emit("sendMessage", message, (error) => {
+    messageButton.removeAttribute("disabled");
+
+    messageInput.value = "";
+    messageInput.focus();
+
+    if (error) {
+      return alert(error);
+    }
+  });
 });

@@ -26,3 +26,7 @@ export const getUsersInRoom = (room) => {
   room = room.trim();
   return users.filter((user) => user.room === room);
 };
+
+export const getUser = (id) => {
+  return users.find((user) => user.id === id);
+};

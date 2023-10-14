@@ -3,7 +3,7 @@ import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
 import { generateMessage } from "./utils/message.js";
-import { addUser, getUsersInRoom } from "./utils/users.js";
+import { addUser, getUser, getUsersInRoom } from "./utils/users.js";
 
 const app = express();
 const server = createServer(app);
@@ -38,8 +38,11 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("sendMessage", (message) => {
-    console.log("sendMessage", { message });
+  socket.on("sendMessage", (message, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit("message", generateMessage(user.username, message));
+    callback();
   });
 
   socket.on("disconnect", (message) => {
