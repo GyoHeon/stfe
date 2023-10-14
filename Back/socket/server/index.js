@@ -1,12 +1,19 @@
-import { WebSocketServer } from "ws";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-const wss = new WebSocketServer({ port: 7071 });
+const httpServer = createServer();
+const io = new Server(httpServer, { cors: { origin: "*" } });
 
-wss.on("connection", (ws) => {
-  ws.send("connected");
+const PORT = 8080;
 
-  ws.on("message", (messageFromClient) => {
-    const message = JSON.parse(messageFromClient);
-    console.log(message);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("message", (message) => {
+    io.emit("message", `${socket.id.substr(0, 2)} said ${message}`);
   });
+});
+
+httpServer.listen(PORT, () => {
+  console.log("Server running on port 8080");
 });
