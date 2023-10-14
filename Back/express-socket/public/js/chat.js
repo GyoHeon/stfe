@@ -12,3 +12,17 @@ socket.emit("join", { username, room }, (error) => {
 });
 
 socket.on("message", (message) => {});
+
+const sidebar = document.querySelector("#sidebar");
+
+socket.on("roomData", ({ room, users }) => {
+  const userList = users.map(({ username }) => `<li>${username}</li>`).join("");
+
+  sidebar.innerHTML = `<h1>Room name: ${room}</h1>
+  <div>
+    <h2>Users</h2>
+    <ul>
+      ${userList}
+    </ul>
+  </div>`;
+});

@@ -1,5 +1,3 @@
-import { users } from "..";
-
 export const users = [];
 
 export const addUser = ({ id, username, room }) => {

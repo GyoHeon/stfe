@@ -2,8 +2,8 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
-import { generateMessage } from "./utils/message";
-import { addUser, getUsersInRoom } from "./utils/users";
+import { generateMessage } from "./utils/message.js";
+import { addUser, getUsersInRoom } from "./utils/users.js";
 
 const app = express();
 const server = createServer(app);
