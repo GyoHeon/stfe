@@ -2,16 +2,27 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
+import { addUser, users } from "./utils/users";
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
+export const users = [];
+
 io.on("connection", (socket) => {
   console.log("socket id:", socket.id);
 
-  socket.on("join", (message) => {
-    console.log("join", { message });
+  socket.on("join", (options, callback) => {
+    const { error, user } = addUser({ id: socket.id, ...options });
+
+    if (error) {
+      return callback(error);
+    }
+
+    socket.join(user.room);
+
+    users.push(user);
   });
   socket.on("sendMessage", (message) => {
     console.log("sendMessage", { message });
