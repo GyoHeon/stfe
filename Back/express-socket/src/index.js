@@ -3,7 +3,7 @@ import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
 import { generateMessage } from "./utils/message.js";
-import { addUser, getUser, getUsersInRoom } from "./utils/users.js";
+import { addUser, getUser, getUsersInRoom, removeUser } from "./utils/users.js";
 
 const app = express();
 const server = createServer(app);
@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
       .to(user.room)
       .emit(
         "message",
-        generateMessage("", `New user ${user.username} has joined!`)
+        generateMessage("Admin", `New user ${user.username} has joined!`)
       );
 
     io.to(user.room).emit("roomData", {
@@ -46,7 +46,20 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", (message) => {
-    console.log("disconnect", { message });
+    const { error, user } = removeUser(socket.id);
+
+    if (error) {
+      return error;
+    }
+
+    io.to(user.room).emit(
+      "message",
+      generateMessage("Admin", `User ${user.username} has left!`)
+    );
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
   });
 });
 

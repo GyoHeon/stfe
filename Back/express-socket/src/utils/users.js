@@ -30,3 +30,13 @@ export const getUsersInRoom = (room) => {
 export const getUser = (id) => {
   return users.find((user) => user.id === id);
 };
+
+export const removeUser = (id) => {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index === -1) {
+    return { error: "User not found!" };
+  }
+
+  return { user: users.splice(index, 1)[0] };
+};
