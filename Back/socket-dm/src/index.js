@@ -1,11 +1,24 @@
+import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
+import mongoose from "mongoose";
 import path from "path";
 import { Server } from "socket.io";
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
+
+dotenv.config({ path: "../.env" });
+
+mongoose
+  .connect(process.env.MONGO_ID)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const users = [];
 io.on("connection", (socket) => {
