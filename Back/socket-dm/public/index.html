@@ -14,7 +14,7 @@
   </header>
 
   <div>
-    <form method="post">
+    <form method="post" id="form-room">
       <input type="text" name="username" id="username" placeholder="name" required>
       <button>ENTER</button>
     </form>
@@ -22,18 +22,18 @@
 
   <div>
     <aside>
-      <div>My name: </div>
+      <div id="my-name">My name: </div>
       <div>Users
-        <ul></ul>
+        <ul id="users-name"></ul>
       </div>
     </aside>
   </div>
 
   <main>
     <div></div>
-    <div class="messages"></div>
+    <div id="messages"></div>
     <div>
-      <form method="post">
+      <form method="post" id="form-message">
         <input type="text" name="message" id="message" placeholder="message" required>
         <button>SEND</button>
       </form>
