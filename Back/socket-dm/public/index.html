@@ -9,6 +9,36 @@
 </head>
 
 <body>
+  <header>
+    <h1>Chat room</h1>
+  </header>
+
+  <div>
+    <form method="post">
+      <input type="text" name="username" id="username" placeholder="name" required>
+      <button>ENTER</button>
+    </form>
+  </div>
+
+  <div>
+    <aside>
+      <div>My name: </div>
+      <div>Users
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <div></div>
+    <div class="messages"></div>
+    <div>
+      <form method="post">
+        <input type="text" name="message" id="message" placeholder="message" required>
+        <button>SEND</button>
+      </form>
+    </div>
+  </main>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="main.js"></script>
