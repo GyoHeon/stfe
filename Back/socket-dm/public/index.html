@@ -20,24 +20,26 @@
     </form>
   </div>
 
-  <div>
-    <aside>
-      <div id="my-name">My name: </div>
-      <div>Users
-        <ul id="users-name"></ul>
-      </div>
-    </aside>
-  </div>
-
-  <main>
-    <div></div>
-    <div id="messages"></div>
+  <main id="chat-body" style="display: none;flex-direction: column;">
     <div>
-      <form method="post" id="form-message">
-        <input type="text" name="message" id="message" placeholder="message" required>
-        <button>SEND</button>
-      </form>
+      <aside>
+        <div id="my-name">My name: </div>
+        <div>Users
+          <ul id="users-name"></ul>
+        </div>
+      </aside>
     </div>
+
+    <main>
+      <div></div>
+      <div id="messages"></div>
+      <div>
+        <form method="post" id="form-message">
+          <input type="text" name="message" id="message" placeholder="message" required>
+          <button>SEND</button>
+        </form>
+      </div>
+    </main>
   </main>
 
   <script src="/socket.io/socket.io.js"></script>
