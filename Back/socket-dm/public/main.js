@@ -12,6 +12,7 @@ const messageInput = document.getElementById("message");
 const messageContainer = document.getElementById("messages");
 const myName = document.getElementById("my-name");
 const usersName = document.getElementById("users-name");
+const chatPerson = document.getElementById("chat-person");
 
 // login
 const enterForm = document.getElementById("form-room");
@@ -58,13 +59,31 @@ const socketConnect = async (username, userID) => {
   await socket.connect();
 };
 
+const setActiveUser = (username, userID) => {
+  usersName.childNodes.forEach((user) => {
+    if (user.dataset.userid === userID) {
+      user.classList.add("active");
+    } else if (user.classList.contains("active")) {
+      user.classList.remove("active");
+    }
+  });
+
+  chatPerson.innerHTML = `대화 상대: <h3>${username}</h3>`;
+  messageContainer.style.display = "flex";
+
+  socket.emit("fetch-messages", { receiver: userID });
+};
+
 socket.on("users-data", ({ users }) => {
   usersName.innerHTML = "";
 
   users.forEach((user) => {
     if (user.userID !== localStorage.getItem("session-userID")) {
-      const userElement = `<li>${user.username}</li>`;
-      usersName.insertAdjacentHTML("beforeend", userElement);
+      const liElement = document.createElement("li");
+      liElement.innerHTML = user.username;
+      liElement.setAttribute("data-userid", user.userID);
+      liElement.onclick = () => setActiveUser(user.username, user.userID);
+      usersName.insertAdjacentElement("beforeend", liElement);
     }
   });
 });

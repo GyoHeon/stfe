@@ -42,7 +42,13 @@ io.on("connection", (socket) => {
     username: socket.username,
     userID: socket.id,
   };
-  users.push(userData);
+
+  const user = users.find(({ userID }) => userID === socket.id);
+
+  if (user === undefined) {
+    users.push(userData);
+  }
+
   io.emit("users-data", { users });
 
   // message from client

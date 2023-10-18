@@ -1,0 +1,11 @@
+li.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+#messages {
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid black;
+  display: none;
+}
