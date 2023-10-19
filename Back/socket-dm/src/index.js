@@ -5,7 +5,7 @@ import { createServer } from "http";
 import mongoose from "mongoose";
 import path from "path";
 import { Server } from "socket.io";
-import { saveMessages } from "./utils/messages.js";
+import { fetchMessages, saveMessages } from "./utils/messages.js";
 
 const app = express();
 const server = createServer(app);
@@ -58,9 +58,6 @@ io.on("connection", (socket) => {
     saveMessages(payload);
   });
 
-  // import message from database
-  socket.on("fetch-message", (message) => {});
-
   // exit chat
   socket.on("disconnect", () => {
     users = users.filter(({ userID }) => userID !== socket.id);
@@ -68,6 +65,16 @@ io.on("connection", (socket) => {
     io.emit("users-data", { users });
 
     io.emit("user-away", socket.id);
+  });
+
+  // import message from database
+  socket.on("fetch-messages", ({ receiver }) => {
+    fetchMessages(io, socket.id, receiver);
+  });
+
+  socket.on("stored-messages", ({ messages }) => {
+    if (messages.length > 0) {
+    }
   });
 });
 

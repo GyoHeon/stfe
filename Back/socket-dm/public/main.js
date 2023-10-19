@@ -152,3 +152,17 @@ socket.on("user-away", (id) => {
     messageContainer.style.display = "none";
   }
 });
+
+socket.on("stored-messages", ({ messages }) => {
+  if (messages.length > 0) {
+    messages.forEach((message) => {
+      const payload = { ...message };
+
+      if (message.from === socket.id) {
+        appendMessage({ ...payload, background: "blue", position: "right" });
+      } else {
+        appendMessage({ ...payload, background: "green", position: "left" });
+      }
+    });
+  }
+});
