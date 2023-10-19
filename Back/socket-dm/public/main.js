@@ -144,3 +144,11 @@ socket.on("message-to-client", ({ from, message, time }) => {
     appendMessage({ message, time, background: "green", position: "left" });
   }
 });
+
+socket.on("user-away", (id) => {
+  const to = chatPerson.dataset.userid;
+  if (id === to) {
+    chatPerson.innerHTML = `대화 상대: <h3>없음</h3>`;
+    messageContainer.style.display = "none";
+  }
+});

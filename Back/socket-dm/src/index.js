@@ -37,7 +37,7 @@ io.use((socket, next) => {
   next();
 });
 
-const users = [];
+let users = [];
 io.on("connection", (socket) => {
   const userData = {
     username: socket.username,
@@ -62,7 +62,13 @@ io.on("connection", (socket) => {
   socket.on("fetch-message", (message) => {});
 
   // exit chat
-  socket.on("disconnect", () => {});
+  socket.on("disconnect", () => {
+    users = users.filter(({ userID }) => userID !== socket.id);
+
+    io.emit("users-data", { users });
+
+    io.emit("user-away", socket.id);
+  });
 });
 
 const PORT = 4000;
