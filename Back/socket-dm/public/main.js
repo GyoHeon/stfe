@@ -6,13 +6,9 @@ socket.onAny((event, ...args) => {
   console.log(event, args);
 });
 
-const messageBody = document.getElementById("chat-body");
-const messageForm = document.getElementById("form-message");
-const messageInput = document.getElementById("message");
 const messageContainer = document.getElementById("messages");
-const myName = document.getElementById("my-name");
-const usersName = document.getElementById("users-name");
-const chatPerson = document.getElementById("chat-person");
+messageContainer.style.display = "flex";
+messageContainer.style.flexDirection = "column";
 
 // login
 const enterForm = document.getElementById("form-room");
@@ -26,6 +22,8 @@ enterForm.addEventListener("submit", (e) => {
   nameInput.value = "";
 });
 
+const messageBody = document.getElementById("chat-body");
+const myName = document.getElementById("my-name");
 const styleTrans = (name) => {
   enterForm.style.display = "none";
   messageBody.style.display = "flex";
@@ -59,16 +57,19 @@ const socketConnect = async (username, userID) => {
   await socket.connect();
 };
 
+const usersName = document.getElementById("users-name");
+const chatPerson = document.getElementById("chat-person");
 const setActiveUser = (username, userID) => {
   usersName.childNodes.forEach((user) => {
     if (user.dataset.userid === userID) {
       user.classList.add("active");
-    } else if (user.classList.contains("active")) {
+    } else {
       user.classList.remove("active");
     }
   });
 
   chatPerson.innerHTML = `대화 상대: <h3>${username}</h3>`;
+  chatPerson.dataset.userid = userID;
   messageContainer.style.display = "flex";
 
   socket.emit("fetch-messages", { receiver: userID });
@@ -96,3 +97,41 @@ if (sessionUsername && sessionUserID) {
 
   styleTrans(sessionUsername);
 }
+
+const appendMessage = ({ message, time, background, position }) => {
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("message");
+  messageElement.style.background = background;
+  messageElement.style.float = position;
+  messageElement.innerHTML = `<p>${message}</p><span>${time}</span>`;
+
+  messageContainer.insertAdjacentElement("beforeend", messageElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+};
+
+const messageForm = document.getElementById("form-message");
+const messageInput = document.getElementById("message");
+messageForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const receiver = chatPerson.dataset.userid;
+  const time = new Date().toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
+  // make message payload
+  const payload = {
+    from: socket.id,
+    to: receiver,
+    message: messageInput.value,
+    time,
+  };
+
+  socket.emit("message-to-server", payload);
+
+  appendMessage({ ...payload, background: "blue", position: "right" });
+
+  messageInput.value = "";
+  messageInput.focus();
+});
