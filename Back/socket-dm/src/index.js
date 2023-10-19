@@ -5,6 +5,7 @@ import { createServer } from "http";
 import mongoose from "mongoose";
 import path from "path";
 import { Server } from "socket.io";
+import { saveMessages } from "./utils/messages.js";
 
 const app = express();
 const server = createServer(app);
@@ -52,7 +53,10 @@ io.on("connection", (socket) => {
   io.emit("users-data", { users });
 
   // message from client
-  socket.on("message-to-server", (message) => {});
+  socket.on("message-to-server", (payload) => {
+    io.to(payload.to).emit("message-to-client", payload);
+    saveMessages(payload);
+  });
 
   // import message from database
   socket.on("fetch-message", (message) => {});

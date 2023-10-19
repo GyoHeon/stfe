@@ -135,3 +135,12 @@ messageForm.addEventListener("submit", (e) => {
   messageInput.value = "";
   messageInput.focus();
 });
+
+socket.on("message-to-client", ({ from, message, time }) => {
+  const receiver = chatPerson.dataset.userid;
+  if (receiver === null) {
+    return;
+  } else if (receiver === from) {
+    appendMessage({ message, time, background: "green", position: "left" });
+  }
+});
