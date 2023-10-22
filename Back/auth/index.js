@@ -8,11 +8,25 @@ const app = express();
 
 app.use(express.json());
 
+const refreshTokens = [];
+
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const user = { name: username };
 
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "30s",
+  });
+  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: "1d",
+  });
+  refreshTokens.push(refreshToken);
+
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24,
+  });
+
   res.json({ accessToken });
 });
 
