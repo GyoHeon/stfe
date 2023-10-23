@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -7,7 +8,9 @@ dotenv.config({ path: ".env" });
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
+// DB 대용
 const refreshTokens = [];
 
 app.post("/login", (req, res) => {
@@ -52,6 +55,36 @@ const authMiddleware = (req, res, next) => {
 
 app.get("/posts", authMiddleware, (req, res) => {
   res.json(posts);
+});
+
+app.get("/refresh", (req, res) => {
+  const { cookies } = req;
+
+  if (!cookies?.refreshToken) {
+    return res.sendStatus(401);
+  }
+
+  const refreshToken = cookies.refreshToken;
+  if (!refreshTokens) {
+    return res.sendStatus(403);
+  }
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      console.warn(err);
+
+      res.sendStatus(403);
+    }
+
+    const name = user.name;
+    const accessToken = jwt.sign({ name }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "30s",
+    });
+
+    res.json({ accessToken });
+  });
+
+  res.sendStatus(500);
 });
 
 const PORT = 4000;
