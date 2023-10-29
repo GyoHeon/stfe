@@ -86,6 +86,15 @@ app.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
+app.post("/logout", (req, res) => {
+  try {
+    req.logOut();
+  } catch (err) {
+    next(err);
+  }
+  res.redirect("/login");
+});
+
 const PORT = 4000;
 server.listen(PORT, () => {
   console.log(`✅ Server Start PORT : ${PORT}`);
