@@ -59,7 +59,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
 
     return res.status(200).json({ success: true });
-  } catch {
+  } catch (err) {
     return res.status(500).json({ success: false, err });
   }
 });
