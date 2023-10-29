@@ -1,4 +1,5 @@
 import cookieParser from "cookie-parser";
+import cookieSession from "cookie-session";
 import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
@@ -11,6 +12,8 @@ import User from "./models/users.model.js";
 
 dotenv.config({ path: "../.env" });
 
+const COOKIE_ENCRYPTION_KEY = ["key1", "key2"];
+
 const app = express();
 const server = createServer(app);
 
@@ -19,7 +22,9 @@ const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, PUBLIC_PATH)));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
+app.use(cookieSession({ keys: COOKIE_ENCRYPTION_KEY }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -62,7 +67,7 @@ app.post("/login", async (req, res, next) => {
       }
       res.redirect("/");
     });
-  });
+  })(req, res, next);
 });
 
 const PORT = 4000;
