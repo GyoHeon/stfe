@@ -21,9 +21,6 @@ passport.use(
     { usernameField: "email", passwordField: "password" },
     async (email, password, done) => {
       User.findOne({ email: email.toLowerCase() }).exec((err, user) => {
-        console.log({ user });
-        console.log({ err });
-
         if (err) return done(err);
 
         if (!user) {

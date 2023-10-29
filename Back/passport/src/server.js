@@ -8,11 +8,8 @@ import passport from "passport";
 import path from "path";
 
 import "./config/passport.js";
-import {
-  checkAuthenticated,
-  checkNotAuthenticated,
-} from "./middlewares/auth.js";
-import User from "./models/users.model.js";
+import mainRouter from "./routes/main.router.js";
+import userRouter from "./routes/users.router.js";
 
 dotenv.config({ path: "../.env" });
 
@@ -33,6 +30,9 @@ app.use(cookieSession({ keys: COOKIE_ENCRYPTION_KEY }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/", mainRouter);
+app.use("/auth", userRouter);
+
 mongoose
   .connect(process.env.MONGO_ID)
   .then(() => {
@@ -41,59 +41,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-app.get("/", checkAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, PUBLIC_PATH, "index.html"));
-});
-
-app.get("/signup", checkNotAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, PUBLIC_PATH, "signup.html"));
-});
-
-app.post("/signup", async (req, res) => {
-  // make user object
-  const user = new User(req.body);
-
-  // save user
-  try {
-    await user.save();
-
-    return res.status(200).json({ success: true });
-  } catch (err) {
-    return res.status(500).json({ success: false, err });
-  }
-});
-
-app.get("/login", checkNotAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, PUBLIC_PATH, "login.html"));
-});
-
-app.post("/login", async (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(401).json({ success: false, message: info });
-    }
-
-    req.logIn(user, function (err) {
-      if (err) {
-        return next(err);
-      }
-      res.redirect("/");
-    });
-  })(req, res, next);
-});
-
-app.post("/logout", (req, res) => {
-  try {
-    req.logOut();
-  } catch (err) {
-    next(err);
-  }
-  res.redirect("/login");
-});
 
 const PORT = 4000;
 server.listen(PORT, () => {
