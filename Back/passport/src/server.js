@@ -8,6 +8,10 @@ import passport from "passport";
 import path from "path";
 
 import "./config/passport.js";
+import {
+  checkAuthenticated,
+  checkNotAuthenticated,
+} from "./middlewares/auth.js";
 import User from "./models/users.model.js";
 
 dotenv.config({ path: "../.env" });
@@ -38,6 +42,14 @@ mongoose
     console.log(err);
   });
 
+app.get("/", checkAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, PUBLIC_PATH, "index.html"));
+});
+
+app.get("/signup", checkNotAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, PUBLIC_PATH, "signup.html"));
+});
+
 app.post("/signup", async (req, res) => {
   // make user object
   const user = new User(req.body);
@@ -50,6 +62,10 @@ app.post("/signup", async (req, res) => {
   } catch {
     return res.status(500).json({ success: false, err });
   }
+});
+
+app.get("/login", checkNotAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, PUBLIC_PATH, "login.html"));
 });
 
 app.post("/login", async (req, res, next) => {
