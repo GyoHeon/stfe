@@ -20,17 +20,21 @@ function init() {
     1,
     500
   );
-
   camera.position.set(2, 3, 5);
 
   const geometry = new THREE.BoxGeometry(2, 2, 2);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-
+  const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
   const cube = new THREE.Mesh(geometry, material);
-
+  scene.add(cube);
   camera.lookAt(cube.position);
 
-  scene.add(cube);
+  const directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.position.set(-1, 2, 3);
+  scene.add(directionalLight);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+  ambientLight.position.set(3, 2, 1);
+  scene.add(ambientLight);
 
   renderer.render(scene, camera);
 }
