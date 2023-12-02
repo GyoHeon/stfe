@@ -5,7 +5,9 @@ window.addEventListener("load", () => {
 });
 
 function init() {
-  const renderer = new THREE.WebGLRenderer({});
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
@@ -18,6 +20,17 @@ function init() {
     1,
     500
   );
+
+  camera.position.set(2, 3, 5);
+
+  const geometry = new THREE.BoxGeometry(2, 2, 2);
+  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+
+  const cube = new THREE.Mesh(geometry, material);
+
+  camera.lookAt(cube.position);
+
+  scene.add(cube);
 
   renderer.render(scene, camera);
 }
