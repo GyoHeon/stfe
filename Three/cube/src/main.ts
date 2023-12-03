@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 window.addEventListener("load", () => {
   init();
@@ -21,6 +22,16 @@ function init() {
     500
   );
   camera.position.set(0, 0, 5);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+
+  controls.autoRotate = true;
+  controls.enableDamping = true;
+  controls.enableZoom = true;
+  controls.enablePan = true;
+
+  controls.maxDistance = 100;
+  controls.minDistance = 1;
 
   const cubeGeometry = new THREE.IcosahedronGeometry(1, 0);
   const cubeMaterial = new THREE.MeshLambertMaterial({
@@ -50,13 +61,15 @@ function init() {
 
   function renderAnimation() {
     const elapsedTime = clock.getElapsedTime();
-    cube.rotation.x = elapsedTime;
-    cube.rotation.y = elapsedTime;
+    // cube.rotation.x = elapsedTime;
+    // cube.rotation.y = elapsedTime;
 
-    skeleton.rotation.x = elapsedTime * 1.5;
-    skeleton.rotation.y = elapsedTime * 1.5;
+    // skeleton.rotation.x = elapsedTime * 1.5;
+    // skeleton.rotation.y = elapsedTime * 1.5;
 
     renderer.render(scene, camera);
+
+    controls.update();
 
     requestAnimationFrame(renderAnimation);
   }
@@ -64,8 +77,11 @@ function init() {
   function handleResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
+
+    controls.update();
   }
 
   window.addEventListener("resize", handleResize);
