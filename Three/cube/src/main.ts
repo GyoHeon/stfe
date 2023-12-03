@@ -25,9 +25,6 @@ function init() {
   const geometry = new THREE.BoxGeometry(2, 2, 2);
   const material = new THREE.MeshStandardMaterial({
     color: 0x00ff00,
-    transparent: true,
-    opacity: 0.5,
-    side: THREE.DoubleSide,
   });
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
@@ -42,6 +39,18 @@ function init() {
   scene.add(ambientLight);
 
   renderer.render(scene, camera);
+
+  const clock = new THREE.Clock();
+
+  renderAnimation();
+
+  function renderAnimation() {
+    requestAnimationFrame(renderAnimation);
+    cube.rotation.x += clock.getDelta() * 0.5;
+
+    cube.position.x += Math.sin(cube.rotation.y) * 0.01;
+    renderer.render(scene, camera);
+  }
 
   function handleResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
