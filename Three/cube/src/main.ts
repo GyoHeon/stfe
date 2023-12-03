@@ -23,7 +23,12 @@ function init() {
   camera.position.set(2, 3, 5);
 
   const geometry = new THREE.BoxGeometry(2, 2, 2);
-  const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+  const material = new THREE.MeshStandardMaterial({
+    color: 0x00ff00,
+    transparent: true,
+    opacity: 0.5,
+    side: THREE.DoubleSide,
+  });
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
   camera.lookAt(cube.position);
@@ -37,4 +42,13 @@ function init() {
   scene.add(ambientLight);
 
   renderer.render(scene, camera);
+
+  function handleResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener("resize", handleResize);
 }
