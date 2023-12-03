@@ -20,23 +20,27 @@ function init() {
     1,
     500
   );
-  camera.position.set(2, 3, 5);
+  camera.position.set(0, 0, 5);
 
-  const geometry = new THREE.BoxGeometry(2, 2, 2);
-  const material = new THREE.MeshStandardMaterial({
-    color: 0x00ff00,
+  const cubeGeometry = new THREE.IcosahedronGeometry(1, 0);
+  const cubeMaterial = new THREE.MeshLambertMaterial({
+    color: 0x00ffff,
+    emissive: 0x111111,
   });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-  camera.lookAt(cube.position);
+  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+  const skeletonGeometry = new THREE.IcosahedronGeometry(2);
+  const skeletonMaterial = new THREE.MeshBasicMaterial({
+    wireframe: true,
+    transparent: true,
+    opacity: 0.2,
+    color: 0xaaaaaa,
+  });
+  const skeleton = new THREE.Mesh(skeletonGeometry, skeletonMaterial);
+  scene.add(skeleton);
 
   const directionalLight = new THREE.DirectionalLight(0xffffff);
-  directionalLight.position.set(-1, 2, 3);
-  scene.add(directionalLight);
-
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-  ambientLight.position.set(3, 2, 1);
-  scene.add(ambientLight);
+  scene.add(cube, directionalLight);
 
   renderer.render(scene, camera);
 
@@ -45,11 +49,16 @@ function init() {
   renderAnimation();
 
   function renderAnimation() {
-    requestAnimationFrame(renderAnimation);
-    cube.rotation.x += clock.getDelta() * 0.5;
+    const elapsedTime = clock.getElapsedTime();
+    cube.rotation.x = elapsedTime;
+    cube.rotation.y = elapsedTime;
 
-    cube.position.x += Math.sin(cube.rotation.y) * 0.01;
+    skeleton.rotation.x = elapsedTime * 1.5;
+    skeleton.rotation.y = elapsedTime * 1.5;
+
     renderer.render(scene, camera);
+
+    requestAnimationFrame(renderAnimation);
   }
 
   function handleResize() {
