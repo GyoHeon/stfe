@@ -1,4 +1,3 @@
-import GUI from "lil-gui";
 import * as THREE from "three";
 
 window.addEventListener("load", () => {
@@ -8,7 +7,10 @@ window.addEventListener("load", () => {
 function init() {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
+    alpha: true,
   });
+
+  renderer.setClearAlpha(0.5);
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
@@ -42,8 +44,4 @@ function init() {
   }
 
   window.addEventListener("resize", handleResize);
-
-  const gui = new GUI();
-
-  gui.add(camera.position, "x", 1, 10);
 }
