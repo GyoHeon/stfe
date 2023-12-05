@@ -1,6 +1,5 @@
 import GUI from "lil-gui";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 window.addEventListener("load", () => {
   init();
@@ -24,53 +23,12 @@ function init() {
   );
   camera.position.set(0, 0, 5);
 
-  const controls = new OrbitControls(camera, renderer.domElement);
-
-  controls.autoRotate = true;
-  controls.enableDamping = true;
-  controls.enableZoom = true;
-  controls.enablePan = true;
-
-  controls.maxDistance = 100;
-  controls.minDistance = 1;
-
-  const cubeGeometry = new THREE.IcosahedronGeometry(1, 0);
-  const cubeMaterial = new THREE.MeshLambertMaterial({
-    color: 0x00ffff,
-    emissive: 0x111111,
-  });
-  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-
-  const skeletonGeometry = new THREE.IcosahedronGeometry(2);
-  const skeletonMaterial = new THREE.MeshBasicMaterial({
-    wireframe: true,
-    transparent: true,
-    opacity: 0.2,
-    color: 0xaaaaaa,
-  });
-  const skeleton = new THREE.Mesh(skeletonGeometry, skeletonMaterial);
-  scene.add(skeleton);
-
-  const directionalLight = new THREE.DirectionalLight(0xffffff);
-  scene.add(cube, directionalLight);
-
   renderer.render(scene, camera);
-
-  const clock = new THREE.Clock();
 
   renderAnimation();
 
   function renderAnimation() {
-    const elapsedTime = clock.getElapsedTime();
-    // cube.rotation.x = elapsedTime;
-    // cube.rotation.y = elapsedTime;
-
-    // skeleton.rotation.x = elapsedTime * 1.5;
-    // skeleton.rotation.y = elapsedTime * 1.5;
-
     renderer.render(scene, camera);
-
-    controls.update();
 
     requestAnimationFrame(renderAnimation);
   }
@@ -81,8 +39,6 @@ function init() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
-
-    controls.update();
   }
 
   window.addEventListener("resize", handleResize);
@@ -90,7 +46,4 @@ function init() {
   const gui = new GUI();
 
   gui.add(camera.position, "x", 1, 10);
-  gui.add(cube.position, "y", -3, 3);
-
-  gui.addColor(cube.material, "color");
 }
