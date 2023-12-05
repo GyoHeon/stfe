@@ -1,3 +1,4 @@
+import GUI from "lil-gui";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -85,4 +86,11 @@ function init() {
   }
 
   window.addEventListener("resize", handleResize);
+
+  const gui = new GUI();
+
+  gui.add(camera.position, "x", 1, 10);
+  gui.add(cube.position, "y", -3, 3);
+
+  gui.addColor(cube.material, "color");
 }
