@@ -1,5 +1,7 @@
+import { GUI } from "lil-gui";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
+
 import Card from "./Card";
 
 window.addEventListener("load", () => {
@@ -7,6 +9,8 @@ window.addEventListener("load", () => {
 });
 
 function init() {
+  const gui = new GUI();
+
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
@@ -26,6 +30,8 @@ function init() {
   );
   camera.position.set(0, 0, 25);
 
+  renderer.render(scene, camera);
+
   const controls = new OrbitControls(camera, renderer.domElement);
 
   const card = new Card({
@@ -36,11 +42,16 @@ function init() {
 
   scene.add(card.mesh);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
   ambientLight.position.set(-5, -5, -5);
   scene.add(ambientLight);
 
-  renderer.render(scene, camera);
+  const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+  const directionalLight2 = directionalLight1.clone();
+
+  directionalLight1.position.set(1, 1, 3);
+  directionalLight2.position.set(-1, 1, -3);
+  scene.add(directionalLight1, directionalLight2);
 
   renderAnimation();
 
