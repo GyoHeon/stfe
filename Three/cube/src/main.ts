@@ -1,4 +1,3 @@
-import GUI from "lil-gui";
 import * as THREE from "three";
 
 window.addEventListener("load", () => {
@@ -42,8 +41,4 @@ function init() {
   }
 
   window.addEventListener("resize", handleResize);
-
-  const gui = new GUI();
-
-  gui.add(camera.position, "x", 1, 10);
 }
