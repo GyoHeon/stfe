@@ -19,8 +19,10 @@ class Card {
       .absarc(-x, -y, radius, Math.PI, -Math.PI * 0.5)
       .absarc(x, -y, radius, -Math.PI * 0.5, 0);
 
-    const geometry = new THREE.ShapeGeometry(shape);
-    // const geometry = new THREE.PlaneGeometry(width, height);
+    const geometry = new THREE.ExtrudeGeometry(shape, {
+      depth: 0.01,
+      bevelThickness: 0.1,
+    });
     const material = new THREE.MeshStandardMaterial({
       color,
       side: THREE.DoubleSide,
