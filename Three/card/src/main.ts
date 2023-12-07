@@ -30,6 +30,13 @@ function init() {
   renderer.render(scene, camera);
 
   const controls = new OrbitControls(camera, renderer.domElement);
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1;
+  controls.rotateSpeed = 0.75;
+  controls.enableDamping = true;
+  controls.enableZoom = false;
+  controls.minPolarAngle = Math.PI * 0.25;
+  controls.maxPolarAngle = Math.PI * 0.75;
 
   const card = new Card({
     width: 10,
@@ -37,14 +44,15 @@ function init() {
     radius: 0.5,
     color: "#0077ff",
   });
+  card.mesh.rotation.z = Math.PI * 0.05;
 
   scene.add(card.mesh);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-  ambientLight.position.set(-5, -5, -5);
+  const ambientLight = new THREE.AmbientLight(0xffffff);
+  ambientLight.position.set(4, 4, 4);
   scene.add(ambientLight);
 
-  const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+  const directionalLight1 = new THREE.DirectionalLight(0xffffff);
   const directionalLight2 = directionalLight1.clone();
 
   directionalLight1.position.set(1, 1, 3);
@@ -54,6 +62,8 @@ function init() {
   renderAnimation();
 
   function renderAnimation() {
+    controls.update();
+
     renderer.render(scene, camera);
 
     requestAnimationFrame(renderAnimation);
