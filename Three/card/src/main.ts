@@ -1,7 +1,6 @@
-import { GUI } from "lil-gui";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
 
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 import Card from "./Card";
 
 window.addEventListener("load", () => {
@@ -9,8 +8,6 @@ window.addEventListener("load", () => {
 });
 
 function init() {
-  const gui = new GUI();
-
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
@@ -37,6 +34,7 @@ function init() {
   const card = new Card({
     width: 10,
     height: 15.8,
+    radius: 0.5,
     color: "#0077ff",
   });
 

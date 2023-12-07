@@ -3,13 +3,24 @@ import * as THREE from "three";
 interface CardOptions {
   width: number;
   height: number;
+  radius: number;
   color: string;
 }
 
 class Card {
   mesh: THREE.Mesh;
-  constructor({ width, height, color }: CardOptions) {
-    const geometry = new THREE.PlaneGeometry(width, height);
+  constructor({ width, height, radius, color }: CardOptions) {
+    const shape = new THREE.Shape();
+    const x = width * 0.5 - radius;
+    const y = height * 0.5 - radius;
+    shape
+      .absarc(x, y, radius, 0, Math.PI * 0.5)
+      .absarc(-x, y, radius, Math.PI * 0.5, Math.PI)
+      .absarc(-x, -y, radius, Math.PI, -Math.PI * 0.5)
+      .absarc(x, -y, radius, -Math.PI * 0.5, 0);
+
+    const geometry = new THREE.ShapeGeometry(shape);
+    // const geometry = new THREE.PlaneGeometry(width, height);
     const material = new THREE.MeshStandardMaterial({
       color,
       side: THREE.DoubleSide,
