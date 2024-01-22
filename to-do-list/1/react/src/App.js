@@ -6,7 +6,7 @@ function TodoList() {
 
   const handleAddTask = () => {
     const taskText = newTask.trim();
-    if (taskText) return;
+    if (!taskText) return;
 
     setTasks([...tasks, newTask]);
     setNewTask("");
