@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+#todo-app {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+}
+
+#tasks-list {
+  padding: 0;
+}
+
+#tasks-list li {
+  margin-bottom: 10px;
+}
