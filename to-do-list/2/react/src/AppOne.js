@@ -8,10 +8,10 @@ function App() {
   const [editText, setEditText] = useState("");
 
   const addTask = () => {
-    if (newTask.trim() !== "") {
-      setTasks([...tasks, newTask.trim()]);
-      setNewTask("");
-    }
+    if (!newTask.trim()) return;
+
+    setTasks([...tasks, newTask.trim()]);
+    setNewTask("");
   };
 
   const startEdit = (index) => {
